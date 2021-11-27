@@ -10,17 +10,16 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BasePage {
-	protected final Log log;
-	// Constructor
-	public BasePage() {
-		log = LogFactory.getLog(getClass());
-	}
+//	protected final Log log;
+//	// Constructor
+//	public BasePage() {
+//		log = LogFactory.getLog(getClass());
+//	}
 	
 	public static BasePage getBasePage() {
 		return new BasePage();
@@ -61,7 +60,8 @@ public class BasePage {
 			WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
 			explicitWait.until(ExpectedConditions.alertIsPresent());
 		} catch (Exception e) {
-			log.debug(e.getMessage());
+//			log.debug(e.getMessage());
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -119,7 +119,8 @@ public class BasePage {
 		try {
 			getWebElement(driver, locator).click();
 		} catch (Exception e) {
-			log.debug("Element is not clickable: " + e.getMessage());
+//			log.debug("Element is not clickable: " + e.getMessage());
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -127,7 +128,8 @@ public class BasePage {
 		try {
 			getWebElement(driver, getDynamicLocator(locator, values)).click();
 		} catch (Exception e) {
-			log.debug("Element is not clickable: " + e.getMessage());
+//			log.debug("Element is not clickable: " + e.getMessage());
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -234,7 +236,8 @@ public class BasePage {
 		try {
 			return getWebElement(driver, locator).isDisplayed();
 		} catch (Exception e) {
-			log.debug("Element is not displayed with error: " + e.getMessage());
+//			log.debug("Element is not displayed with error: " + e.getMessage());
+			System.out.println(e.getMessage());
 			return false;
 		}
 	}
@@ -253,7 +256,8 @@ public class BasePage {
 		try {
 			return getWebElement(driver, getDynamicLocator(locator, values)).isDisplayed();
 		} catch (Exception e) {
-			log.debug("Element is not displayed with error: " + e.getMessage());
+//			log.debug("Element is not displayed with error: " + e.getMessage());
+			System.out.println(e.getMessage());
 			return false;
 		}
 	}
@@ -310,7 +314,8 @@ public class BasePage {
 		try {
 			driver.switchTo().frame(getWebElement(driver, locator));
 		} catch (Exception e) {
-			log.debug("No frame with: " + e.getMessage());
+//			log.debug("No frame with: " + e.getMessage());
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -403,52 +408,53 @@ public class BasePage {
 		jsExecutor.executeScript("arguments[0].removeAttribute('" + attributeRemove + "');", getWebElement(driver, locator));
 	}
 
-	public boolean areJQueryAndJSLoadedSuccess(WebDriver driver) {
-		WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
-		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+//	public boolean areJQueryAndJSLoadedSuccess(WebDriver driver) {
+//		WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
+//		final JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+//
+//		ExpectedCondition<Boolean> jQueryLoad = new ExpectedCondition<Boolean>() {
+//			@Override
+//			public Boolean apply(WebDriver driver) {
+//				try {
+//					return ((Long) jsExecutor.executeScript("return jQuery.active") == 0);
+//				} catch (Exception e) {
+//					return true;
+//				}
+//			}
+//		};
+//
+//		ExpectedCondition<Boolean> jsLoad = new ExpectedCondition<Boolean>() {
+//			@Override
+//			public Boolean apply(WebDriver driver) {
+//				return jsExecutor.executeScript("return document.readyState").toString().equals("complete");
+//			}
+//		};
 
-		ExpectedCondition<Boolean> jQueryLoad = new ExpectedCondition<Boolean>() {
-			@Override
-			public Boolean apply(WebDriver driver) {
-				try {
-					return ((Long) jsExecutor.executeScript("return jQuery.active") == 0);
-				} catch (Exception e) {
-					return true;
-				}
-			}
-		};
-
-		ExpectedCondition<Boolean> jsLoad = new ExpectedCondition<Boolean>() {
-			@Override
-			public Boolean apply(WebDriver driver) {
-				return jsExecutor.executeScript("return document.readyState").toString().equals("complete");
-			}
-		};
-
-		return explicitWait.until(jQueryLoad) && explicitWait.until(jsLoad);
-	}
-
-	public String getElementValidationMessage(WebDriver driver, String locator) {
-		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-		return (String) jsExecutor.executeScript("return arguments[0].validationMessage;", getWebElement(driver, locator));
-	}
-
-	public boolean isImageLoaded(WebDriver driver, String locator) {
-		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-		boolean status = (boolean) jsExecutor.executeScript("return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0", getWebElement(driver, locator));
-		if (status) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+//		return explicitWait.until(jQueryLoad) && explicitWait.until(jsLoad);
+//	}
+//
+//	public String getElementValidationMessage(WebDriver driver, String locator) {
+//		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+//		return (String) jsExecutor.executeScript("return arguments[0].validationMessage;", getWebElement(driver, locator));
+//	}
+//
+//	public boolean isImageLoaded(WebDriver driver, String locator) {
+//		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+//		boolean status = (boolean) jsExecutor.executeScript("return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0", getWebElement(driver, locator));
+//		if (status) {
+//			return true;
+//		} else {
+//			return false;
+//		}
+//	}
 
 	public void waitForElementVisible(WebDriver driver, String locator) {
 		try {
 			WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
 			explicitWait.until(ExpectedConditions.visibilityOfElementLocated(getByLocator(locator)));
 		} catch (Exception e) {
-			log.debug("Wait for element visible with error: " + e.getMessage());
+//			log.debug("Wait for element visible with error: " + e.getMessage());
+			System.out.println(e.getMessage());
 		}
 
 	}
@@ -476,7 +482,8 @@ public class BasePage {
 			WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
 			explicitWait.until(ExpectedConditions.elementToBeClickable(getByLocator(locator)));
 		} catch (Exception e) {
-			log.debug("Wait for element clickable with error: " + e.getMessage());
+//			log.debug("Wait for element clickable with error: " + e.getMessage());
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -517,6 +524,6 @@ public class BasePage {
 	}
 	
 
-	private long shortTimeout = GlobalConstants.SHORT_TIMEOUT;
-	private long longTimeout = GlobalConstants.LONG_TIMEOUT;
+	private long shortTimeout = 15;
+	private long longTimeout = 30;
 }
