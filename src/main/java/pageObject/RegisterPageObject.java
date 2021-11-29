@@ -2,6 +2,7 @@ package pageObject;
 
 import org.openqa.selenium.WebDriver;
 
+import commons.BasePage;
 import pageUI.RegisterPageUI;
 
 public class RegisterPageObject extends BasePage {

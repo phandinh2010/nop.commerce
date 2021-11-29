@@ -1,4 +1,4 @@
-package test;
+package commons;
 
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -12,12 +12,12 @@ import org.testng.Assert;
 import org.testng.Reporter;
 
 public class BaseTest {
-	protected final Log log;
-
-	// Constructor
-	protected BaseTest() {
-		log = LogFactory.getLog(getClass());
-	}
+//	protected final Log log;
+//
+//	// Constructor
+//	protected BaseTest() {
+//		log = LogFactory.getLog(getClass());
+//	}
 
 	WebDriver driver;
 	private String projectLocation = System.getProperty("user.dir");

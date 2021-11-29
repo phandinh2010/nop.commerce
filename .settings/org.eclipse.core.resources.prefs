@@ -1,3 +1,3 @@
 eclipse.preferences.version=1
-encoding//src/main/java/pageObject/BasePage.java=UTF-8
-encoding//src/main/java/test/BaseTest.java=UTF-8
+encoding//src/main/java/commons/BasePage.java=UTF-8
+encoding//src/main/java/commons/BaseTest.java=UTF-8
