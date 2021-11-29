@@ -3,6 +3,8 @@ package commons;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -12,12 +14,12 @@ import org.testng.Assert;
 import org.testng.Reporter;
 
 public class BaseTest {
-//	protected final Log log;
-//
-//	// Constructor
-//	protected BaseTest() {
-//		log = LogFactory.getLog(getClass());
-//	}
+	protected final Log log;
+
+	// Constructor
+	protected BaseTest() {
+		log = LogFactory.getLog(getClass());
+	}
 
 	WebDriver driver;
 	private String projectLocation = System.getProperty("user.dir");

@@ -1,6 +1,4 @@
 package test;
-
-
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
@@ -21,7 +19,7 @@ public class RegisterTest extends BaseTest {
 	@BeforeClass
 	public void beforeClass(String browserName, String urlValue) {
 		driver = getBrowserDriver(browserName, urlValue);		
-		driver.get("https://demo.nopcommerce.com");			
+//		driver.get("https://demo.nopcommerce.com");			
 		homePage= new HomePageObject(driver);
 		registerPage = homePage.clickToRegisterLink();
 	}
