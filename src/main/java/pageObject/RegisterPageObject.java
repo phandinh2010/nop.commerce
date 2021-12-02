@@ -7,11 +7,11 @@ import pageUI.RegisterPageUI;
 
 public class RegisterPageObject extends BasePage {
 	WebDriver driver;
-	
-	public RegisterPageObject (WebDriver driver) {
-		this.driver = driver;		
+
+	public RegisterPageObject(WebDriver driver) {
+		this.driver = driver;
 	}
-	
+
 	public void enterToFirstNameTextbox(String firstName) {
 		waitForElementVisible(driver, RegisterPageUI.FIRST_NAME_TEXTBOX);
 		sendkeyToElement(driver, RegisterPageUI.FIRST_NAME_TEXTBOX, firstName);
@@ -40,7 +40,7 @@ public class RegisterPageObject extends BasePage {
 	public void clickToRegisterBtn() {
 		waitForElementClickable(driver, RegisterPageUI.REGISTER_BUTTON);
 		clickToElement(driver, RegisterPageUI.REGISTER_BUTTON);
-		
+
 	}
 
 	public boolean isSuccessMsgDisplay() {
@@ -54,55 +54,64 @@ public class RegisterPageObject extends BasePage {
 		return PageGeneratorManager.getHomePage(driver);
 	}
 
-	public boolean isFistNameErrorMsgDisplay() {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isLastNameEmptyMsgDisplay() {
+		waitForElementVisible(driver, RegisterPageUI.LAST_NAME_EMPTY_MSG);
+		return isElementDisplayed(driver, RegisterPageUI.LAST_NAME_EMPTY_MSG);
 	}
 
-	public boolean isLastNameErrorMsgDisplay() {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isPaswordEmptyMsgDisplay() {
+		waitForElementVisible(driver, RegisterPageUI.PASSWORD_EMPTY_MSG);
+		return isElementDisplayed(driver, RegisterPageUI.PASSWORD_EMPTY_MSG);
 	}
 
-	public boolean isPaswordErrorMsgDisplay() {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isConfirmPasswordEmptyMsgDisplay() {
+		waitForElementVisible(driver, RegisterPageUI.CONFIRM_PASSWORD_EMPTY_MSG);
+		return isElementDisplayed(driver, RegisterPageUI.CONFIRM_PASSWORD_EMPTY_MSG);
 	}
 
-	public boolean isPErrorMsgDisplay() {
-		// TODO Auto-generated method stub
-		return false;
+//	public boolean isEmailErrorMsgDisplay() {
+//		waitForElementVisible(driver, RegisterPageUI.EMAIL_INVALID_MSG);
+//		return isElementDisplayed(driver, RegisterPageUI.EMAIL_INVALID_MSG);
+//	}
+
+	public boolean isEmailEmptyEmptyMsgDisplay() {
+		waitForElementVisible(driver, RegisterPageUI.EMAIL_EMPTY_MSG);
+		return isElementDisplayed(driver, RegisterPageUI.EMAIL_EMPTY_MSG);
 	}
 
-	public boolean isEmailErrorMsgDisplay() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public boolean isEmailEmptyErrorMsgDisplay() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public boolean isEmailInvalidErrorMsgDisplay() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public boolean isEmailExistErrorMsgDisplay() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public boolean isPassworInvaliddErrorMsgDisplay() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public boolean isConfirmPassworInvaliddErrorMsgDisplay() {
-		// TODO Auto-generated method stub
-		return false;
+	public String getEmailEmptyEmptyMsgDisplay() {
+		waitForElementVisible(driver, RegisterPageUI.EMAIL_EMPTY_MSG);
+		return getElementText(driver, RegisterPageUI.EMAIL_EMPTY_MSG);
 	}
 
 	
+	public boolean isEmailInvalidErrorMsgDisplay() {
+		waitForElementVisible(driver, RegisterPageUI.EMAIL_INVALID_MSG);
+		return isElementDisplayed(driver, RegisterPageUI.EMAIL_INVALID_MSG);
+	}
+
+	public boolean isEmailExistErrorMsgDisplay() {
+		waitForElementVisible(driver, RegisterPageUI.EMAIL_EXIST_MSG);
+		return isElementDisplayed(driver, RegisterPageUI.EMAIL_EXIST_MSG);
+	}
+
+	public boolean isPassworInvaliddErrorMsgDisplay() {
+		waitForElementVisible(driver, RegisterPageUI.PASSWORD_INVALID_MSG);
+		return isElementDisplayed(driver, RegisterPageUI.PASSWORD_INVALID_MSG);
+	}
+
+	public boolean isConfirmPassworInvaliddErrorMsgDisplay() {
+		waitForElementVisible(driver, RegisterPageUI.CONFIRM_INVALID_MSG);
+		return isElementDisplayed(driver, RegisterPageUI.CONFIRM_INVALID_MSG);
+	}
+
+	public boolean isFistNameEmptyMsgDisplay() {
+		waitForElementVisible(driver, RegisterPageUI.FIRST_NAME_EMPTY_MSG);
+		return isElementDisplayed(driver, RegisterPageUI.FIRST_NAME_EMPTY_MSG);
+	}
+	public String getFistNameEmptyMsgDisplay() {
+		waitForElementVisible(driver, RegisterPageUI.FIRST_NAME_EMPTY_MSG);
+		return getElementText(driver, RegisterPageUI.FIRST_NAME_EMPTY_MSG);
+	}
+
 }

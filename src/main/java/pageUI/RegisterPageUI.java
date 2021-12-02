@@ -11,4 +11,16 @@ public class RegisterPageUI {
 	public static final String REGISTER_SUCCESS_MSG = "//div[@class='result']";
 	public static final String LOGOUT_LINK = "//a[@class='ico-logout']";
 	public static final String CONTINUE_BUTTON = "//a[text()='Continue']";
+	public static final String FIRST_NAME_EMPTY_MSG = "//span[@id='FirstName-error']";
+	public static final String LAST_NAME_EMPTY_MSG = "//span[@id='LastName-error']";
+	public static final String EMAIL_EMPTY_MSG = "//span[@id='Email-error']";
+	public static final String PASSWORD_EMPTY_MSG = "//span[@id='Password-error']";
+	public static final String CONFIRM_PASSWORD_EMPTY_MSG = "//span[@id='ConfirmPassword-error']";
+	public static final String EMAIL_INVALID_MSG = "//span[@id='Email-error']";
+	public static final String EMAIL_EXIST_MSG = "//span[@id='Email-error']";
+	public static final String PASSWORD_INVALID_MSG = "//span[@id='Password-error']";
+	public static final String CONFIRM_INVALID_MSG = "//span[@id='ConfirmPassword-error']";
 }
+
+
+

@@ -2,6 +2,7 @@ package test;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -26,29 +27,31 @@ public class RegisterTest extends BaseTest {
 	
 	@Test
 	public void Register_TC_01_Empty_Data() {
-		registerPage.enterToFirstNameTextbox("");
-		registerPage.enterToLastNameTextbox("");
-		registerPage.enterToEmailTextbox("");
-		registerPage.enterToPasswordTextbox("");
-		registerPage.enterToConfirmPasswordTextbox("");
+		registerPage.enterToFirstNameTextbox(" ");
+		registerPage.enterToLastNameTextbox(" ");
+		registerPage.enterToEmailTextbox(" ");
+		registerPage.enterToPasswordTextbox(" ");
+		registerPage.enterToConfirmPasswordTextbox(" ");
 		registerPage.clickToRegisterBtn();
 			
 		//Assert.assertTrue(registerPage.isSuccessMsgDisplay());
-		Assert.assertTrue(registerPage.isFistNameErrorMsgDisplay());
-		Assert.assertTrue(registerPage.isLastNameErrorMsgDisplay());
-		Assert.assertTrue(registerPage.isEmailEmptyErrorMsgDisplay());
-		Assert.assertTrue(registerPage.isPaswordErrorMsgDisplay());
-		Assert.assertTrue(registerPage.isPErrorMsgDisplay());
+		Assert.assertTrue(registerPage.isFistNameEmptyMsgDisplay());
+		Assert.assertEquals(registerPage.getFistNameEmptyMsgDisplay(), "First name is required.");
+		
+		Assert.assertTrue(registerPage.isLastNameEmptyMsgDisplay());
+		Assert.assertTrue(registerPage.isEmailEmptyEmptyMsgDisplay());
+		Assert.assertTrue(registerPage.isPaswordEmptyMsgDisplay());
+		Assert.assertTrue(registerPage.isConfirmPasswordEmptyMsgDisplay());
 		
 	}
 	
 	@Test
 	public void Register_TC_02_Email_Invalid() {
-		registerPage.enterToFirstNameTextbox("");
-		registerPage.enterToLastNameTextbox("");
-		registerPage.enterToEmailTextbox("");
-		registerPage.enterToPasswordTextbox("");
-		registerPage.enterToConfirmPasswordTextbox("");
+		registerPage.enterToFirstNameTextbox(" ");
+		registerPage.enterToLastNameTextbox(" ");
+		registerPage.enterToEmailTextbox(" ");
+		registerPage.enterToPasswordTextbox(" ");
+		registerPage.enterToConfirmPasswordTextbox(" ");
 		registerPage.clickToRegisterBtn();
 			
 		
@@ -59,11 +62,11 @@ public class RegisterTest extends BaseTest {
 
 	@Test
 	public void Register_TC_03_Data_Valid() {
-		registerPage.enterToFirstNameTextbox("");
-		registerPage.enterToLastNameTextbox("");
-		registerPage.enterToEmailTextbox("");
-		registerPage.enterToPasswordTextbox("");
-		registerPage.enterToConfirmPasswordTextbox("");
+		registerPage.enterToFirstNameTextbox(" ");
+		registerPage.enterToLastNameTextbox(" ");
+		registerPage.enterToEmailTextbox(" ");
+		registerPage.enterToPasswordTextbox(" ");
+		registerPage.enterToConfirmPasswordTextbox(" ");
 		registerPage.clickToRegisterBtn();
 			
 		
@@ -74,11 +77,11 @@ public class RegisterTest extends BaseTest {
 	@Test
 	public void Register_TC_4_Email_Exist() {
 		registerPage = homePage.clickToRegisterLink();
-		registerPage.enterToFirstNameTextbox("");
-		registerPage.enterToLastNameTextbox("");
-		registerPage.enterToEmailTextbox("");
-		registerPage.enterToPasswordTextbox("");
-		registerPage.enterToConfirmPasswordTextbox("");
+		registerPage.enterToFirstNameTextbox(" ");
+		registerPage.enterToLastNameTextbox(" ");
+		registerPage.enterToEmailTextbox(" ");
+		registerPage.enterToPasswordTextbox(" ");
+		registerPage.enterToConfirmPasswordTextbox(" ");
 		registerPage.clickToRegisterBtn();
 			
 		
@@ -88,11 +91,11 @@ public class RegisterTest extends BaseTest {
 	@Test
 	public void Register_TC_05_Password_NotEnough6Charactor() {
 		registerPage = homePage.clickToRegisterLink();
-		registerPage.enterToFirstNameTextbox("");
-		registerPage.enterToLastNameTextbox("");
-		registerPage.enterToEmailTextbox("");
-		registerPage.enterToPasswordTextbox("");
-		registerPage.enterToConfirmPasswordTextbox("");
+		registerPage.enterToFirstNameTextbox(" ");
+		registerPage.enterToLastNameTextbox(" ");
+		registerPage.enterToEmailTextbox(" ");
+		registerPage.enterToPasswordTextbox(" ");
+		registerPage.enterToConfirmPasswordTextbox(" ");
 		registerPage.clickToRegisterBtn();		
 		Assert.assertTrue(registerPage.isPassworInvaliddErrorMsgDisplay());		
 	}
@@ -100,11 +103,11 @@ public class RegisterTest extends BaseTest {
 	@Test
 	public void Register_TC_06_ConfirmPassword_Invalid() {
 		registerPage = homePage.clickToRegisterLink();
-		registerPage.enterToFirstNameTextbox("");
-		registerPage.enterToLastNameTextbox("");
-		registerPage.enterToEmailTextbox("");
-		registerPage.enterToPasswordTextbox("");
-		registerPage.enterToConfirmPasswordTextbox("");
+		registerPage.enterToFirstNameTextbox(" ");
+		registerPage.enterToLastNameTextbox(" ");
+		registerPage.enterToEmailTextbox(" ");
+		registerPage.enterToPasswordTextbox(" ");
+		registerPage.enterToConfirmPasswordTextbox(" ");
 		registerPage.clickToRegisterBtn();		
 		Assert.assertTrue(registerPage.isConfirmPassworInvaliddErrorMsgDisplay());		
 	}
