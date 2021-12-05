@@ -8,6 +8,7 @@
   <parameter name ="browser" value="chrome"/>
     <classes>
       <class name="test.RegisterTest"/>
+      <class name="test.LoginTest"/>
     </classes>
   </test>
 </suite>

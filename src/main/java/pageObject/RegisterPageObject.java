@@ -114,4 +114,11 @@ public class RegisterPageObject extends BasePage {
 		return getElementText(driver, RegisterPageUI.FIRST_NAME_EMPTY_MSG);
 	}
 
+	public String getTextEmailExistErrorMsgDisplay() {		
+		waitForElementVisible(driver, RegisterPageUI.EMAIL_EXIST_MSG);
+		return getElementText(driver, RegisterPageUI.EMAIL_EXIST_MSG);
+	}
+
+
+
 }
