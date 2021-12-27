@@ -14,6 +14,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import pageObject.HomePageObject;
+import pageObject.PageGeneratorManager;
+
 public class BasePage {
 //	protected final Log log;
 //	// Constructor
@@ -523,7 +526,9 @@ public class BasePage {
 		return separator + folderName + separator;
 	}
 	
-
+	
+	
+	
 	private long shortTimeout = 15;
 	private long longTimeout = 30;
 }

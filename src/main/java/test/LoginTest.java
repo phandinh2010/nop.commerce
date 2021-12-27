@@ -53,7 +53,8 @@ public class LoginTest extends BaseTest {
 		loginPage.enterToPasswordTextbox("123456");
 		loginPage.clickToLoginBtn();
 		System.out.println(loginPage.getLoginFailMsg());
-		Assert.assertEquals(loginPage.getLoginFailMsg(), "Login was unsuccessful. Please correct the errors and try again.No customer account found");
+		Assert.assertEquals(loginPage.getLoginFailMsg(), "Login was unsuccessful. Please correct the errors and try again.\r\n"
+				+ "No customer account found");
 		//Assert.assertEquals(loginPage.getCustomerNotFoundMsg(), "No customer account found");
 	}
 
@@ -62,7 +63,8 @@ public class LoginTest extends BaseTest {
 		loginPage.enterToEmailTextbox(RegisterTest.emailRegister);
 		loginPage.enterToPasswordTextbox("");
 		loginPage.clickToLoginBtn();
-		Assert.assertEquals(loginPage.getPasswordEmptyLoginFailMsg(), "Login was unsuccessful. Please correct the errors and try again.The credentials provided are incorrect");
+		Assert.assertEquals(loginPage.getPasswordEmptyLoginFailMsg(), "Login was unsuccessful. Please correct the errors and try again.\r\n"
+				+ "The credentials provided are incorrect");
 		//Assert.assertEquals(loginPage.getPasswordEmptyMsg(), "The credentials provided are incorrect");
 	}
 
@@ -71,7 +73,7 @@ public class LoginTest extends BaseTest {
 		loginPage.enterToEmailTextbox(RegisterTest.emailRegister);
 		loginPage.enterToPasswordTextbox("123457");
 		loginPage.clickToLoginBtn();
-		Assert.assertEquals(loginPage.getPasswordwrongMsg(), "Login was unsuccessful. Please correct the errors and try again.The credentials provided are incorrect");
+		Assert.assertEquals(loginPage.getPasswordwrongMsg(), "The credentials provided are incorrect");
 	}
 
 	@Test

@@ -14,6 +14,11 @@ import org.testng.Assert;
 import org.testng.Reporter;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import pageObject.HomePageObject;
+import pageObject.MyAccountPageObject;
+import pageObject.PageGeneratorManager;
+import pageObject.RegisterPageObject;
+import pageUI.MyAccountPageUI;
 
 public class BaseTest {
 	protected final Log log;
@@ -27,7 +32,6 @@ public class BaseTest {
 	private String projectLocation = System.getProperty("user.dir");
 	private String osName = System.getProperty("os.name");
 
-	
 	public WebDriver getBrowserDriver(String browserName) {
 		Browser browser = Browser.valueOf(browserName.toUpperCase());
 
@@ -57,59 +61,57 @@ public class BaseTest {
 		return driver;
 	}
 
-	
-	  public WebDriver getDriver() {
-		  return driver;
-		  }
-	  
-	 protected void removeDriver() {
-		 
-		 try {
-				// Get ra tên của OS và convert qua chữ thường
-				String osName = System.getProperty("os.name").toLowerCase();
-				log.info("OS name = " + osName);
+	public WebDriver getDriver() {
+		return driver;
+	}
 
-				// Khai báo 1 biến command line để thực thi
-				String cmd = "";
-				if (driver != null) {
-					driver.quit();
-				}
-				
-				// Quit driver executable file in Task Manager
-				if (driver.toString().toLowerCase().contains("chrome")) {
-					if (osName.toLowerCase().contains("mac")) {
-						cmd = "pkill chromedriver";
-					} else if (osName.toLowerCase().contains("windows")) {
-						cmd = "taskkill /F /FI \"IMAGENAME eq chromedriver*\"";
-					}
-				} else if (driver.toString().toLowerCase().contains("internetexplorer")) {
-					if (osName.toLowerCase().contains("window")) {
-						cmd = "taskkill /F /FI \"IMAGENAME eq IEDriverServer*\"";
-					}
-				} else if (driver.toString().toLowerCase().contains("firefox")) {
-					if (osName.toLowerCase().contains("mac")) {
-						cmd = "pkill geckodriver";
-					} else if (osName.toLowerCase().contains("windows")) {
-						cmd = "taskkill /F /FI \"IMAGENAME eq geckodriver*\"";
-					}
-				} else if (driver.toString().toLowerCase().contains("edge")) {
-					if (osName.toLowerCase().contains("mac")) {
-						cmd = "pkill msedgedriver";
-					} else if (osName.toLowerCase().contains("windows")) {
-						cmd = "taskkill /F /FI \"IMAGENAME eq msedgedriver*\"";
-					}
-				}
+	protected void removeDriver() {
 
-				Process process = Runtime.getRuntime().exec(cmd);
-				process.waitFor();
+		try {
+			// Get ra tên của OS và convert qua chữ thường
+			String osName = System.getProperty("os.name").toLowerCase();
+			log.info("OS name = " + osName);
 
-				log.info("---------- QUIT BROWSER SUCCESS ----------");
-			} catch (Exception e) {
-				log.info(e.getMessage());
+			// Khai báo 1 biến command line để thực thi
+			String cmd = "";
+			if (driver != null) {
+				driver.quit();
 			}
-		 driver.quit();
+
+			// Quit driver executable file in Task Manager
+			if (driver.toString().toLowerCase().contains("chrome")) {
+				if (osName.toLowerCase().contains("mac")) {
+					cmd = "pkill chromedriver";
+				} else if (osName.toLowerCase().contains("windows")) {
+					cmd = "taskkill /F /FI \"IMAGENAME eq chromedriver*\"";
+				}
+			} else if (driver.toString().toLowerCase().contains("internetexplorer")) {
+				if (osName.toLowerCase().contains("window")) {
+					cmd = "taskkill /F /FI \"IMAGENAME eq IEDriverServer*\"";
+				}
+			} else if (driver.toString().toLowerCase().contains("firefox")) {
+				if (osName.toLowerCase().contains("mac")) {
+					cmd = "pkill geckodriver";
+				} else if (osName.toLowerCase().contains("windows")) {
+					cmd = "taskkill /F /FI \"IMAGENAME eq geckodriver*\"";
+				}
+			} else if (driver.toString().toLowerCase().contains("edge")) {
+				if (osName.toLowerCase().contains("mac")) {
+					cmd = "pkill msedgedriver";
+				} else if (osName.toLowerCase().contains("windows")) {
+					cmd = "taskkill /F /FI \"IMAGENAME eq msedgedriver*\"";
+				}
+			}
+
+			Process process = Runtime.getRuntime().exec(cmd);
+			process.waitFor();
+
+			log.info("---------- QUIT BROWSER SUCCESS ----------");
+		} catch (Exception e) {
+			log.info(e.getMessage());
 		}
-	 
+		driver.quit();
+	}
 
 	protected WebDriver getBrowserDriver(String browserName, String url) {
 		Browser browser = Browser.valueOf(browserName.toUpperCase());
@@ -248,11 +250,40 @@ public class BaseTest {
 		return checkEquals(actual, expected);
 	}
 
+	public String generalEmail() {
+		String email = "test" + random(1, 1000) + "@gmail.com";
+		return email;
+	}
+
+	private static int random(int min, int max) {
+		return (int) Math.floor(Math.random() * (max - min) + min);
+	}
+
+	public MyAccountPageObject registerAccount(HomePageObject homePage, WebDriver driver, String emailRegister) {
+		registerPage = homePage.clickToRegisterLink();
+		registerPage.enterToFirstNameTextbox("test");
+		registerPage.enterToLastNameTextbox("auto");
+		emailRegister = generalEmail();
+		System.out.println(emailRegister);
+		registerPage.enterToEmailTextbox(emailRegister);
+		registerPage.enterToPasswordTextbox("123456");
+		registerPage.enterToConfirmPasswordTextbox("123456");
+		registerPage.clickToRegisterBtn();
+		registerPage.clickToContinueBtn();
+		homePage = PageGeneratorManager.getHomePage(driver);
+		homePage.clickToMyAccountLink();
+		return PageGeneratorManager.getMyAccountPage(driver);
+
+	}
+
 	public void sleepInSecond(long time) {
 		try {
 			Thread.sleep(time * 1000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-	}
+	};
+
+	RegisterPageObject registerPage;
+	HomePageObject homePage;
 }

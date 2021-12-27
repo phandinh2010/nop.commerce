@@ -18,6 +18,11 @@ public class PageGeneratorManager {
 		return new LoginPageObject(driver);
 	}
 
+	public static MyAccountPageObject getMyAccountPage(WebDriver driver) {
+		return new MyAccountPageObject(driver);
+	}
+	
+	
 	
 
 }

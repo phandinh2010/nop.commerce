@@ -116,14 +116,6 @@ public class RegisterTest extends BaseTest {
 	@AfterClass(alwaysRun = true) // Khi testcase fail vẫn run để close browser
 	public void afterClass() {
 		removeDriver();
-	}
-
-	public String generalEmail() {
-		String email = "test" + random(1, 1000) + "@gmail.com";
-		return email;
-	}
-
-	private static int random(int min, int max) {
-		return (int) Math.floor(Math.random() * (max - min) + min);
-	}
+	}	
+	
 }

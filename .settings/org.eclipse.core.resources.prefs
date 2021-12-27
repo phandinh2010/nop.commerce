@@ -2,5 +2,5 @@ eclipse.preferences.version=1
 encoding//src/main/java/commons/BasePage.java=UTF-8
 encoding//src/main/java/commons/BaseTest.java=UTF-8
 encoding//src/main/java/test/LoginTest.java=UTF-8
+encoding//src/main/java/test/MyAccountTest.java=UTF-8
 encoding//src/main/java/test/RegisterTest.java=UTF-8
-encoding/<project>=UTF-8

@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="Nop Commerce" parallel="false">
 
-<parameter name="url" value="https://demo.nopcommerce.com"/>
+	<parameter name="url" value="https://demo.nopcommerce.com" />
 
 
-  <test name="Run on CHROME">
-  <parameter name ="browser" value="chrome"/>
-    <classes>
-      <class name="test.RegisterTest"/>
-      <class name="test.LoginTest"/>
-    </classes>
-  </test>
+	<test name="Run on CHROME">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<!-- 
+			<class name="test.RegisterTest" />
+			<class name="test.LoginTest" />-->
+			<class name="test.MyAccountTest" />
+		</classes>
+	</test>
 </suite>
