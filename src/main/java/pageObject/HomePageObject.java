@@ -1,6 +1,10 @@
 package pageObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import commons.BasePage;
 import pageUI.HomePageUI;
@@ -104,8 +108,32 @@ public class HomePageObject extends BasePage {
 		
 	}
 
+	public void clickSubMenu(String parentMenu, String subMenu) {
+		waitForElementVisible(driver, HomePageUI.MENU_HEADER);
+		hoverToElement(driver, HomePageUI.MENU_HEADER, parentMenu );
+		waitForElementVisible(driver, HomePageUI.SUBMENU_HEADER);
+		clickToElement(driver, HomePageUI.SUBMENU_HEADER, subMenu);		
+	}
 
+	public void selectSortbyDropdown(String string) {
+		waitForElementVisible(driver, HomePageUI.SORT_ITEM_DROPDOWN);
+		selectItemInDropdown(driver, HomePageUI.SORT_ITEM_DROPDOWN, string);		
+	}	
 	
+	public List<String> listProduct() {
+		waitForElementVisible(driver, HomePageUI.LIST_PRODUCT_SORT);
+		List<WebElement> elements = getListWebElement(driver, HomePageUI.LIST_PRODUCT_SORT);
+		List<String> listProduct = new ArrayList<String>();
+		for (WebElement webElement : elements) {
+			String a = getElementText(driver, webElement);
+			listProduct.add(a);
+		}
+		return listProduct;
+		
+		
+		
+		
+	}	
 	
 
 }

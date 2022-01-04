@@ -20,5 +20,9 @@ public class HomePageUI {
 	public static final String AUTOMATICALLY_SEARCH_SUB_CATEGORIES_CHECKBOX = "id=isc";
 	public static final String MANUFACTURER_DROPDOWN = "id=mid";
 	public static final String APPLE_MACBOOK_PRO_PRODUCT = "xpath=//a[text()='Apple MacBook Pro 13-inch']";
+	public static final String MENU_HEADER = "xpath=//ul[@class='top-menu notmobile']//a[@href='/%s']";
+	public static final String SUBMENU_HEADER = "xpath=//ul[@class='top-menu notmobile']//a[@href='/%S']";
+	public static final String SORT_ITEM_DROPDOWN = "id=products-orderby";
+	public static final String LIST_PRODUCT_SORT = "xpath=//h2[@class='product-title']/a";
 
 }
