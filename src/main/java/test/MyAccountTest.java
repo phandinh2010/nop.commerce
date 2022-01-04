@@ -11,6 +11,8 @@ import commons.BaseTest;
 import pageObject.HomePageObject;
 import pageObject.LoginPageObject;
 import pageObject.MyAccountPageObject;
+import pageObject.PageGeneratorManager;
+import pageObject.ProductPageObject;
 import pageObject.RegisterPageObject;
 import pageUI.MyAccountPageUI;
 
@@ -21,6 +23,7 @@ public class MyAccountTest extends BaseTest {
 	LoginPageObject loginPage;
 	RegisterPageObject registerPage;
 	MyAccountPageObject myAccountPage;
+	ProductPageObject productPage;
 	String emailRegister;
 
 	@Parameters({ "browser", "url" })
@@ -29,9 +32,10 @@ public class MyAccountTest extends BaseTest {
 		driver = getBrowserDriver(browserName, urlValue);
 		// driver.get("https://demo.nopcommerce.com");
 		homePage = new HomePageObject(driver);
-		myAccountPage = registerAccount(homePage, driver, emailRegister);
-		System.out.println("Email registed1=" + emailRegister);
-		
+		emailRegister = generalEmail();	
+		registerAccount(homePage, driver, emailRegister);
+		myAccountPage = homePage.clickToMyAccountLink(driver);
+		System.out.println(emailRegister);		
 	}
 
 	@Test
@@ -85,8 +89,7 @@ public class MyAccountTest extends BaseTest {
 	}
 
 	@Test
-	public void Login_TC_03_My_Account_Change_Password() throws InterruptedException {
-		System.out.println("Email registed2=" + emailRegister);
+	public void Login_TC_03_My_Account_Change_Password(){
 		myAccountPage.clickChangePasswordLink();
 		myAccountPage.enterOldPassword("123456");
 		myAccountPage.enterNewPassword("1234567");
@@ -97,32 +100,35 @@ public class MyAccountTest extends BaseTest {
 		loginPage = homePage.clickToLoginLink();
 		
 		loginPage.enterToEmailTextbox(emailRegister);
-		Thread.sleep(3000);
 		loginPage.enterToPasswordTextbox("123456");
-		Assert.assertEquals(loginPage.getLoginFailMsg(), "Login was unsuccessful. Please correct the errors and try again.\r\n"
-				+ "The credentials provided are incorrect");
+		loginPage.clickToLoginBtn();
+		System.out.println(loginPage.getLoginFailMsg());
+		Assert.assertTrue(loginPage.getLoginFailMsg().contains("Login was unsuccessful. Please correct the errors and try again."));
+		Assert.assertTrue(loginPage.getLoginFailMsg().contains("The credentials provided are incorrect"));
 		
 		loginPage.enterToPasswordTextbox("1234567");
-		Assert.assertTrue(registerPage.isSuccessMsgDisplay());
-		
-		
-		
-		
+		loginPage.clickToLoginBtn();
+		homePage = PageGeneratorManager.getHomePage(driver);
+		Assert.assertTrue(myAccountPage.isLoginSuccess());		
 		
 	}
 
 	@Test
-	public void Login_TC_04_Email_Valid_Pass_Empty() {
+	public void Login_TC_04_My_Account_Add_Review_Product() {
+		productPage = homePage.clickToAProduct("Apple MacBook Pro 13-inch");		
+		productPage.clickToAddYourReviewLink();
 		
-	}
-
-	@Test
-	public void Login_TC_05_Email_Valid_Pass_Wrong() {
-		
+		productPage.enterReviewTitleTextbox("Test title");
+		productPage.enterContentReivewTextarea("Test content");
+		productPage.clickToSubmitReviewButton();	
+		myAccountPage = productPage.clickToMyAccountLink(driver);
+		myAccountPage.clickToMyProductReviews();
+		Assert.assertEquals(myAccountPage.getTitleReview(), "Test title");
+		Assert.assertEquals(myAccountPage.getContentReview(), "Test content");
+		Assert.assertEquals(myAccountPage.getProductReview(), "Apple MacBook Pro 13-inch");			
 	}
 
 	
-
 	@AfterClass(alwaysRun = true) // Khi testcase fail vẫn run để close browser
 	public void afterClass() {
 		removeDriver();

@@ -4,13 +4,11 @@ import org.openqa.selenium.WebDriver;
 
 public class PageGeneratorManager {
 
-	
 	public static HomePageObject getHomePage(WebDriver driver) {
 		return new HomePageObject(driver);
 	}
 
 	public static RegisterPageObject getRegisterPage(WebDriver driver) {
-		
 		return new RegisterPageObject(driver);
 	}
 
@@ -21,8 +19,8 @@ public class PageGeneratorManager {
 	public static MyAccountPageObject getMyAccountPage(WebDriver driver) {
 		return new MyAccountPageObject(driver);
 	}
-	
-	
-	
 
+	public static ProductPageObject getProductPage(WebDriver driver) {		
+		return new ProductPageObject(driver);
+	}
 }

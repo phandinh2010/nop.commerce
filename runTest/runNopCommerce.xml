@@ -10,7 +10,7 @@
 			<!-- 
 			<class name="test.RegisterTest" />
 			<class name="test.LoginTest" />-->
-			<class name="test.MyAccountTest" />
+			<class name="test.SearchTest" />
 		</classes>
 	</test>
 </suite>

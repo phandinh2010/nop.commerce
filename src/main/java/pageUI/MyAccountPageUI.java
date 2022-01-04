@@ -41,4 +41,8 @@ public class MyAccountPageUI {
 	public static final String CONFIRM_PASSWORD_TEXTBOX = "id=ConfirmNewPassword";
 	public static final String CHANGE_PASSWORD_BUTTON = "xpath=//button[text()='Change password']";	
 	public static final String SUCCESS_CHANGE_PASSWORD_MSG = "xpath=//span[@title='Close']";
+	public static final String TITLE_REVIEW= "xpath=//div[@class='review-title']//strong";
+	public static final String CONTENT_REVIEW = "xpath=//div[@class='review-text']";
+	public static final String PRODUCT_REVIEW = "xpath=//div[@class='review-info']//a";
+	public static final String MY_PRODUCT_REVIEW_LINK = "xpath=//a[text()='My product reviews']";
 }

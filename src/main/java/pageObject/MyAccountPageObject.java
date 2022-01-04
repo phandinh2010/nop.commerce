@@ -5,6 +5,7 @@ import org.openqa.selenium.support.ui.Select;
 
 import commons.BasePage;
 import commons.GlobalConstants;
+import pageUI.HomePageUI;
 import pageUI.MyAccountPageUI;
 
 public class MyAccountPageObject extends BasePage {
@@ -256,6 +257,30 @@ public class MyAccountPageObject extends BasePage {
 		clickToElement(driver, MyAccountPageUI.SUCCESS_CHANGE_PASSWORD_MSG);
 		
 	}
+public boolean isLoginSuccess() {
+	waitForElementVisible(driver, HomePageUI.MY_ACCOUNT_LINK);
+	return isElementDisplayed(driver, HomePageUI.MY_ACCOUNT_LINK);
+}
+
+public void clickToMyProductReviews() {
+	waitForElementVisible(driver, MyAccountPageUI.MY_PRODUCT_REVIEW_LINK);
+	clickToElement(driver, MyAccountPageUI.MY_PRODUCT_REVIEW_LINK);	
+}
+
+public String getTitleReview() {
+	waitForElementVisible(driver, MyAccountPageUI.TITLE_REVIEW);
+	return getElementText(driver, MyAccountPageUI.TITLE_REVIEW);
+}
+
+public String getContentReview() {
+	waitForElementVisible(driver, MyAccountPageUI.CONTENT_REVIEW);
+	return getElementText(driver, MyAccountPageUI.CONTENT_REVIEW);
+}
+
+public String getProductReview() {
+	waitForElementVisible(driver, MyAccountPageUI.PRODUCT_REVIEW);
+	return getElementText(driver, MyAccountPageUI.PRODUCT_REVIEW);
+}
 
 
 

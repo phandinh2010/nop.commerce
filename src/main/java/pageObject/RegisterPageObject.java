@@ -3,6 +3,7 @@ package pageObject;
 import org.openqa.selenium.WebDriver;
 
 import commons.BasePage;
+import commons.GlobalConstants;
 import pageUI.RegisterPageUI;
 
 public class RegisterPageObject extends BasePage {
@@ -49,8 +50,8 @@ public class RegisterPageObject extends BasePage {
 	}
 
 	public HomePageObject clickToLogoutLink() {
-		waitForElementClickable(driver, RegisterPageUI.LOGOUT_LINK);
-		clickToElement(driver, RegisterPageUI.LOGOUT_LINK);
+		waitForElementClickable(driver, GlobalConstants.LOG_OUT_LINK);
+		clickToElement(driver, GlobalConstants.LOG_OUT_LINK);
 		return PageGeneratorManager.getHomePage(driver);
 	}
 

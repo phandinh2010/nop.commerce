@@ -259,20 +259,16 @@ public class BaseTest {
 		return (int) Math.floor(Math.random() * (max - min) + min);
 	}
 
-	public MyAccountPageObject registerAccount(HomePageObject homePage, WebDriver driver, String emailRegister) {
+	public HomePageObject registerAccount(HomePageObject homePage, WebDriver driver, String emailRegister) {
 		registerPage = homePage.clickToRegisterLink();
 		registerPage.enterToFirstNameTextbox("test");
 		registerPage.enterToLastNameTextbox("auto");
-		emailRegister = generalEmail();
-		System.out.println(emailRegister);
 		registerPage.enterToEmailTextbox(emailRegister);
 		registerPage.enterToPasswordTextbox("123456");
 		registerPage.enterToConfirmPasswordTextbox("123456");
 		registerPage.clickToRegisterBtn();
 		registerPage.clickToContinueBtn();
-		homePage = PageGeneratorManager.getHomePage(driver);
-		homePage.clickToMyAccountLink();
-		return PageGeneratorManager.getMyAccountPage(driver);
+		return PageGeneratorManager.getHomePage(driver);
 
 	}
 

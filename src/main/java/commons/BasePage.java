@@ -15,7 +15,9 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import pageObject.HomePageObject;
+import pageObject.MyAccountPageObject;
 import pageObject.PageGeneratorManager;
+import pageUI.HomePageUI;
 
 public class BasePage {
 //	protected final Log log;
@@ -528,7 +530,14 @@ public class BasePage {
 	
 	
 	
+	public MyAccountPageObject clickToMyAccountLink(WebDriver driver) {
+		
+		waitForElementVisible(driver, HomePageUI.MY_ACCOUNT_LINK);
+		clickToElement(driver, HomePageUI.MY_ACCOUNT_LINK);
+		return PageGeneratorManager.getMyAccountPage(driver);
+	}
 	
 	private long shortTimeout = 15;
 	private long longTimeout = 30;
+
 }
