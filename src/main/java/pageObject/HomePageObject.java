@@ -37,14 +37,19 @@ public class HomePageObject extends BasePage {
 		sendkeyToElement(driver, HomePageUI.SEARCH_TEXTBOX_AT_HOME_PAGE, string);
 	}
 	
-//	public void enterKeywordSearchTextboxAtSearchPage(String string) {
-//		waitForElementVisible(driver, HomePageUI.SEARCH_TEXTBOX_AT_SEARCH_PAGE);
-//		sendkeyToElement(driver, HomePageUI.SEARCH_TEXTBOX_AT_SEARCH_PAGE, string);
-//	}
+	public void enterKeywordSearchTextboxAtSearchPage(String string) {
+		waitForElementVisible(driver, HomePageUI.SEARCH_TEXTBOX_AT_SEARCH_PAGE);
+		sendkeyToElement(driver, HomePageUI.SEARCH_TEXTBOX_AT_SEARCH_PAGE, string);
+	}
 	
-	public void clickToSearchButton() {
-		waitForElementVisible(driver, HomePageUI.SEARCH_BUTTON);
-		clickToElement(driver, HomePageUI.SEARCH_BUTTON);
+	public void clickToSearchButtonAtHomePage() {
+		waitForElementVisible(driver, HomePageUI.SEARCH_BUTTON_AT_HOME_PAGE);
+		clickToElement(driver, HomePageUI.SEARCH_BUTTON_AT_HOME_PAGE);
+	}
+	
+	public void clickToSearchButtonAtSearchPage() {
+		waitForElementVisible(driver, HomePageUI.SEARCH_BUTTON_AT_SEARCH_PAGE);
+		clickToElement(driver, HomePageUI.SEARCH_BUTTON_AT_SEARCH_PAGE);
 	}
 
 	public String getErrorMgsNotEnoughCharactor() {
@@ -71,6 +76,34 @@ public class HomePageObject extends BasePage {
 		waitForElementVisible(driver, HomePageUI.RESULT_SEARCH_PRODUCT_ONLY);
 		return isElementDisplayed(driver, HomePageUI.RESULT_SEARCH_PRODUCT_ONLY);
 	}
+
+	public void selectCheckboxAdvanceSearch() {
+		waitForElementVisible(driver, HomePageUI.SEARCH_ADVANCE_CHECKBOX);
+		checkToCheckboxOrRadio(driver, HomePageUI.SEARCH_ADVANCE_CHECKBOX);
+	}
+	
+	public void selectParentCategories(String string) {
+		waitForElementVisible(driver, HomePageUI.PARENT_CATEGORIES_DROPDOWN);
+		selectItemInDropdown(driver, HomePageUI.PARENT_CATEGORIES_DROPDOWN, string);
+		
+	}
+
+	public void selectCheckboxAutomaticallySearchSubCategories() {
+		waitForElementVisible(driver, HomePageUI.AUTOMATICALLY_SEARCH_SUB_CATEGORIES_CHECKBOX);
+		checkToCheckboxOrRadio(driver, HomePageUI.AUTOMATICALLY_SEARCH_SUB_CATEGORIES_CHECKBOX);
+	}
+
+	public boolean isDisplayProductSAppleMacBookPro() {
+		waitForElementVisible(driver, HomePageUI.APPLE_MACBOOK_PRO_PRODUCT);
+		return isElementDisplayed(driver, HomePageUI.APPLE_MACBOOK_PRO_PRODUCT);
+	}
+
+	public void selectManufaceturer(String string) {
+		waitForElementVisible(driver, HomePageUI.MANUFACTURER_DROPDOWN);
+		selectItemInDropdown(driver, HomePageUI.MANUFACTURER_DROPDOWN, string);
+		
+	}
+
 
 	
 	
