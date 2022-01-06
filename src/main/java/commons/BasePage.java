@@ -1,8 +1,9 @@
 package commons;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -25,12 +26,10 @@ public class BasePage {
 //	public BasePage() {
 //		log = LogFactory.getLog(getClass());
 //	}
-	
+
 	public static BasePage getBasePage() {
 		return new BasePage();
 	}
-	
-	
 
 	public void openUrl(WebDriver driver, String pageUrl) {
 		driver.get(pageUrl);
@@ -89,8 +88,8 @@ public class BasePage {
 //	public By getByXpath(String locator) {
 //		return By.xpath(locator);
 //	}
-	
-	//locatoType: id=/ css=/   xpath=/ name=/ class=
+
+	// locatoType: id=/ css=/ xpath=/ name=/ class=
 	private By getByLocator(String locatorType) {
 		By by = null;
 		if (locatorType.startsWith("id=")) {
@@ -99,14 +98,13 @@ public class BasePage {
 			by = By.className(locatorType.substring(6));
 		} else if (locatorType.startsWith("name=")) {
 			by = By.name(locatorType.substring(5));
-		}else if (locatorType.startsWith("css=")) {
+		} else if (locatorType.startsWith("css=")) {
 			by = By.cssSelector(locatorType.substring(4));
-		}else if (locatorType.startsWith("xpath=")) {
+		} else if (locatorType.startsWith("xpath=")) {
 			by = By.xpath(locatorType.substring(6));
 		}
 		return by;
 	}
-	
 
 	public WebElement getWebElement(WebDriver driver, String locator) {
 		return driver.findElement(getByLocator(locator));
@@ -169,7 +167,8 @@ public class BasePage {
 		return select.isMultiple();
 	}
 
-	public void selectItemInCustomDropdown(WebDriver driver, String parentLocator, String childItemLocator, String expectedItem) {
+	public void selectItemInCustomDropdown(WebDriver driver, String parentLocator, String childItemLocator,
+			String expectedItem) {
 		clickToElement(driver, parentLocator);
 		sleepInSecond(1);
 
@@ -202,7 +201,7 @@ public class BasePage {
 	public String getElementText(WebDriver driver, String locator) {
 		return getWebElement(driver, locator).getText().trim();
 	}
-	
+
 	public String getElementText(WebDriver driver, WebElement element) {
 		return element.getText().trim();
 	}
@@ -336,8 +335,8 @@ public class BasePage {
 		Actions action = new Actions(driver);
 		action.moveToElement(getWebElement(driver, locator)).perform();
 	}
-	
-	public void hoverToElement(WebDriver driver, String locator, String...values) {
+
+	public void hoverToElement(WebDriver driver, String locator, String... values) {
 		Actions action = new Actions(driver);
 		action.moveToElement(getWebElement(driver, getDynamicLocator(locator, values))).perform();
 	}
@@ -374,7 +373,8 @@ public class BasePage {
 
 	public boolean areExpectedTextInInnerText(WebDriver driver, String textExpected) {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-		String textActual = (String) jsExecutor.executeScript("return document.documentElement.innerText.match('" + textExpected + "')[0]");
+		String textActual = (String) jsExecutor
+				.executeScript("return document.documentElement.innerText.match('" + textExpected + "')[0]");
 		return textActual.equals(textExpected);
 	}
 
@@ -392,9 +392,11 @@ public class BasePage {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 		WebElement element = getWebElement(driver, locator);
 		String originalStyle = element.getAttribute("style");
-		jsExecutor.executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element, "style", "border: 2px solid red; border-style: dashed;");
+		jsExecutor.executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element, "style",
+				"border: 2px solid red; border-style: dashed;");
 		sleepInSecond(1);
-		jsExecutor.executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element, "style", originalStyle);
+		jsExecutor.executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element, "style",
+				originalStyle);
 	}
 
 	public void clickToElementByJS(WebDriver driver, String locator) {
@@ -419,7 +421,8 @@ public class BasePage {
 
 	public void removeAttributeInDOM(WebDriver driver, String locator, String attributeRemove) {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-		jsExecutor.executeScript("arguments[0].removeAttribute('" + attributeRemove + "');", getWebElement(driver, locator));
+		jsExecutor.executeScript("arguments[0].removeAttribute('" + attributeRemove + "');",
+				getWebElement(driver, locator));
 	}
 
 //	public boolean areJQueryAndJSLoadedSuccess(WebDriver driver) {
@@ -475,7 +478,8 @@ public class BasePage {
 
 	public void waitForElementVisible(WebDriver driver, String locator, String... values) {
 		WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
-		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(getByLocator(getDynamicLocator(locator, values))));
+		explicitWait
+				.until(ExpectedConditions.visibilityOfElementLocated(getByLocator(getDynamicLocator(locator, values))));
 
 	}
 
@@ -536,16 +540,17 @@ public class BasePage {
 		String separator = System.getProperty("file.separator");
 		return separator + folderName + separator;
 	}
-	
-	
-	
+
 	public MyAccountPageObject clickToMyAccountLink(WebDriver driver) {
-		
+
 		waitForElementVisible(driver, HomePageUI.MY_ACCOUNT_LINK);
 		clickToElement(driver, HomePageUI.MY_ACCOUNT_LINK);
 		return PageGeneratorManager.getMyAccountPage(driver);
 	}
+
+
 	
+
 	private long shortTimeout = 15;
 	private long longTimeout = 30;
 

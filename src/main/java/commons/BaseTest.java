@@ -1,5 +1,7 @@
 package commons;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -259,6 +261,21 @@ public class BaseTest {
 		return (int) Math.floor(Math.random() * (max - min) + min);
 	}
 
+	public boolean SortStringAToZ(String a, String b) {
+		if (a.compareTo(b) < 0)
+			return true;
+		return false;
+	}
+
+	public boolean isListSortAToZ(List<String> list) {
+		boolean result = false;
+		for (int i = 0; i < list.size() - 1; i++) {
+			return result = SortStringAToZ(list.get(i), list.get(i + 1));
+			
+		}
+		return result;
+	}
+	
 	public HomePageObject registerAccount(HomePageObject homePage, WebDriver driver, String emailRegister) {
 		registerPage = homePage.clickToRegisterLink();
 		registerPage.enterToFirstNameTextbox("test");

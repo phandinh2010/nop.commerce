@@ -27,7 +27,7 @@ public class HomePageObject extends BasePage {
 		clickToElement(driver, HomePageUI.LOGIN_LINK);
 		return PageGeneratorManager.getLoginPage(driver);
 
-	}		
+	}
 
 	public ProductPageObject clickToAProduct(String nameProduct) {
 		waitForElementVisible(driver, HomePageUI.SELECT_A_PRODUCT, nameProduct);
@@ -35,22 +35,21 @@ public class HomePageObject extends BasePage {
 		return PageGeneratorManager.getProductPage(driver);
 	}
 
-	
 	public void enterKeywordSearchTextboxAtHomePage(String string) {
 		waitForElementVisible(driver, HomePageUI.SEARCH_TEXTBOX_AT_HOME_PAGE);
 		sendkeyToElement(driver, HomePageUI.SEARCH_TEXTBOX_AT_HOME_PAGE, string);
 	}
-	
+
 	public void enterKeywordSearchTextboxAtSearchPage(String string) {
 		waitForElementVisible(driver, HomePageUI.SEARCH_TEXTBOX_AT_SEARCH_PAGE);
 		sendkeyToElement(driver, HomePageUI.SEARCH_TEXTBOX_AT_SEARCH_PAGE, string);
 	}
-	
+
 	public void clickToSearchButtonAtHomePage() {
 		waitForElementVisible(driver, HomePageUI.SEARCH_BUTTON_AT_HOME_PAGE);
 		clickToElement(driver, HomePageUI.SEARCH_BUTTON_AT_HOME_PAGE);
 	}
-	
+
 	public void clickToSearchButtonAtSearchPage() {
 		waitForElementVisible(driver, HomePageUI.SEARCH_BUTTON_AT_SEARCH_PAGE);
 		clickToElement(driver, HomePageUI.SEARCH_BUTTON_AT_SEARCH_PAGE);
@@ -85,11 +84,11 @@ public class HomePageObject extends BasePage {
 		waitForElementVisible(driver, HomePageUI.SEARCH_ADVANCE_CHECKBOX);
 		checkToCheckboxOrRadio(driver, HomePageUI.SEARCH_ADVANCE_CHECKBOX);
 	}
-	
+
 	public void selectParentCategories(String string) {
 		waitForElementVisible(driver, HomePageUI.PARENT_CATEGORIES_DROPDOWN);
 		selectItemInDropdown(driver, HomePageUI.PARENT_CATEGORIES_DROPDOWN, string);
-		
+
 	}
 
 	public void selectCheckboxAutomaticallySearchSubCategories() {
@@ -105,22 +104,23 @@ public class HomePageObject extends BasePage {
 	public void selectManufaceturer(String string) {
 		waitForElementVisible(driver, HomePageUI.MANUFACTURER_DROPDOWN);
 		selectItemInDropdown(driver, HomePageUI.MANUFACTURER_DROPDOWN, string);
-		
+
 	}
 
 	public void clickSubMenu(String parentMenu, String subMenu) {
-		waitForElementVisible(driver, HomePageUI.MENU_HEADER);
-		hoverToElement(driver, HomePageUI.MENU_HEADER, parentMenu );
-		waitForElementVisible(driver, HomePageUI.SUBMENU_HEADER);
-		clickToElement(driver, HomePageUI.SUBMENU_HEADER, subMenu);		
+		waitForElementVisible(driver, HomePageUI.MENU_HEADER, parentMenu);
+		hoverToElement(driver, HomePageUI.MENU_HEADER, parentMenu);
+		waitForElementVisible(driver, HomePageUI.SUBMENU_HEADER, subMenu);
+		clickToElement(driver, HomePageUI.SUBMENU_HEADER, subMenu);
 	}
 
 	public void selectSortbyDropdown(String string) {
 		waitForElementVisible(driver, HomePageUI.SORT_ITEM_DROPDOWN);
-		selectItemInDropdown(driver, HomePageUI.SORT_ITEM_DROPDOWN, string);		
-	}	
-	
-	public List<String> listProduct() {
+		selectItemInDropdown(driver, HomePageUI.SORT_ITEM_DROPDOWN, string);
+
+	}
+
+	public List<String> getListProduct() {
 		waitForElementVisible(driver, HomePageUI.LIST_PRODUCT_SORT);
 		List<WebElement> elements = getListWebElement(driver, HomePageUI.LIST_PRODUCT_SORT);
 		List<String> listProduct = new ArrayList<String>();
@@ -129,11 +129,35 @@ public class HomePageObject extends BasePage {
 			listProduct.add(a);
 		}
 		return listProduct;
-		
-		
-		
-		
-	}	
-	
+	}
+
+	public List<String> getListPrice() {
+		waitForElementVisible(driver, HomePageUI.LIST_OF_PRICET_SORT);
+		List<WebElement> elements = getListWebElement(driver, HomePageUI.LIST_OF_PRICET_SORT);
+		List<String> listPrice = new ArrayList<String>();
+		for (WebElement webElement : elements) {
+			String a = getElementText(driver, webElement);
+			a = a.substring(0);
+			listPrice.add(a);
+		}
+		return listPrice;
+	}
+
+	public void selectDisplayPerPage(String value) {
+		waitForElementVisible(driver, HomePageUI.DISPLAY_DROPLIST);
+		selectItemInDropdown(driver, HomePageUI.DISPLAY_DROPLIST, value);
+	}
+
+	public int numberProductPerPage() {
+		waitForElementVisible(driver, HomePageUI.NUMBER_OF_PRODUCT_PER_PAGE);
+		return getListWebElement(driver, HomePageUI.NUMBER_OF_PRODUCT_PER_PAGE).size();
+
+	}
+
+	public int getPageCurrent() {
+		waitForElementVisible(driver, HomePageUI.PAGE_CURRENT);
+		String str = getElementText(driver, HomePageUI.PAGE_CURRENT);
+		return Integer.valueOf(str);
+	}
 
 }

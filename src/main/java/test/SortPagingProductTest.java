@@ -29,69 +29,36 @@ public class SortPagingProductTest extends BaseTest {
 	@Parameters({ "browser", "url" })
 	@BeforeClass
 	public void beforeClass(String browserName, String urlValue) {
-		driver = getBrowserDriver(browserName, urlValue);		
+		driver = getBrowserDriver(browserName, urlValue);
 		homePage = new HomePageObject(driver);
-		homePage.clickSubMenu("computers", "notebooks");		
+		homePage.clickSubMenu("Computers ", "Notebooks ");
 	}
 
 	@Test
 	public void Sort_TC_01_Sort_Name_AZ() {
-	homePage.selectSortbyDropdown("Name: A to Z");
+		homePage.selectSortbyDropdown("Name: A to Z");		 
+		Assert.assertTrue(isListSortAToZ(homePage.getListProduct()));
+	}
+
+	@Test
+	public void Sort_TC_02_Sort_Name_ZA() {
+		homePage.selectSortbyDropdown("Name: Z to A");		 
+		Assert.assertFalse(isListSortAToZ(homePage.getListProduct()));
+	}
+
+	@Test
+	public void Sort_TC_03_Sort_Price_Low_To_Hight() {
+		homePage.selectSortbyDropdown("Price: Low to High");		 
+		Assert.assertFalse(isListSortAToZ(homePage.getListProduct()));
+	}
+
+	@Test
+	public void Sort_TC_04_Paging_Equal_4() {
+		homePage.selectDisplayPerPage("");		 
+		int n = homePage.numberProductPerPage();
+		Assert.assertTrue(n <= 3);
 		
 	}
-
-	@Test
-	public void Search_TC_02_Search_With_Note_Exist_Data() {
-		homePage.enterKeywordSearchTextboxAtSearchPage("test xxx");
-		homePage.clickToSearchButtonAtSearchPage();
-		Assert.assertEquals(homePage.getErrorMgsNoDataFound(), "No products were found that matched your criteria.");
-	}
-
-	@Test
-	public void Search_TC_03_Search_With_Product_Name() {
-		homePage.enterKeywordSearchTextboxAtSearchPage("Lenovo");
-		homePage.clickToSearchButtonAtSearchPage();
-		Assert.assertTrue( homePage.isDisplayProductFirst());
-		Assert.assertTrue(homePage.isDisplayProductSecond());
-	}
-
-	@Test
-	public void Search_TC_04_Search_With_Product_Name() {
-		homePage.enterKeywordSearchTextboxAtSearchPage("Thinkpad X1 Carbon Laptop");
-		homePage.clickToSearchButtonAtSearchPage();
-		Assert.assertTrue(homePage.isDisplayProductSOnly());
-	}
-	
-	@Test
-	public void Search_TC_05_Advance_Search_With_Parent_Categories() {
-		homePage.enterKeywordSearchTextboxAtSearchPage("Apple MacBook Pro");
-		homePage.selectCheckboxAdvanceSearch();
-		homePage.selectParentCategories("Computers");		
-		homePage.clickToSearchButtonAtSearchPage();
-		Assert.assertEquals(homePage.getErrorMgsNoDataFound(), "No products were found that matched your criteria.");
-	}
-	@Test
-	public void Search_TC_06_Advance_Search_With_Sub_Categories() {
-		homePage.enterKeywordSearchTextboxAtSearchPage("Apple MacBook Pro");
-		homePage.selectCheckboxAdvanceSearch();
-		homePage.selectParentCategories("Computers");
-		homePage.selectCheckboxAutomaticallySearchSubCategories();
-		homePage.clickToSearchButtonAtSearchPage();
-		Assert.assertTrue(homePage.isDisplayProductSAppleMacBookPro());
-	}
-	@Test
-	public void Search_TC_07_Advance_Search_With_Incorrect_Manufacturer() {
-		homePage.enterKeywordSearchTextboxAtSearchPage("Apple MacBook Pro");
-		homePage.selectCheckboxAdvanceSearch();
-		homePage.selectParentCategories("Computers");
-		homePage.selectCheckboxAutomaticallySearchSubCategories();
-		homePage.selectManufaceturer("HP");
-		homePage.clickToSearchButtonAtSearchPage();
-		Assert.assertEquals(homePage.getErrorMgsNoDataFound(), "No products were found that matched your criteria.");
-	}
-	
-	
-
 	@AfterClass(alwaysRun = true) // Khi testcase fail vẫn run để close browser
 	public void afterClass() {
 		removeDriver();
