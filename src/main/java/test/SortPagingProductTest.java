@@ -72,7 +72,28 @@ public class SortPagingProductTest extends BaseTest {
 		} else {
 			Assert.assertTrue(homePage.isDisplayPreviousPage());
 		}
+	}
 		
+		@Test
+		public void Sort_TC_06_Paging_Equal_6() throws InterruptedException {
+			homePage.selectDisplayPerPage("6");	
+			Thread.sleep(3000);
+			int n = homePage.numberProductPerPage();
+			System.out.println(n);
+			Assert.assertTrue(n <= 6);
+			
+			Assert.assertTrue(homePage.isUndisplayPaging());		
+	}
+		
+		@Test
+		public void Sort_TC_06_Paging_Equal_9() throws InterruptedException {
+			homePage.selectDisplayPerPage("6");	
+			Thread.sleep(3000);
+			int n = homePage.numberProductPerPage();
+			System.out.println(n);
+			Assert.assertTrue(n <= 6);
+			
+			Assert.assertTrue(homePage.isUndisplayPaging());		
 	}
 	@AfterClass(alwaysRun = true) // Khi testcase fail vẫn run để close browser
 	public void afterClass() {

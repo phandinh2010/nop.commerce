@@ -29,5 +29,6 @@ public class HomePageUI {
 	public static final String NUMBER_OF_PRODUCT_PER_PAGE = "xpath=//div[@class='item-box']";
 	public static final String PAGE_CURRENT = "xpath=//li[@class='current-page']/span";
 	public static final String NEXT_PAGE_BUTTON = "xpath=//li[@class='next-page']";
-	public static final String PREV_PAGE_BUTTON = "xpath=//li[@class='previous-page']"; 
+	public static final String PREV_PAGE_BUTTON = "xpath=//li[@class='previous-page']";
+	public static final String PAGING_FUNCTION = "xpath=//div[@class='pager']"; 
 }

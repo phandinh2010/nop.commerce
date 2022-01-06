@@ -173,4 +173,8 @@ public class HomePageObject extends BasePage {
 		waitForElementVisible(driver, HomePageUI.PREV_PAGE_BUTTON);
 		return isElementDisplayed(driver, HomePageUI.PREV_PAGE_BUTTON);
 	}
+
+	public boolean isUndisplayPaging() {
+	return  isElementUndisplayed(driver, HomePageUI.PAGING_FUNCTION);
+	}
 }
