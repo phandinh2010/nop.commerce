@@ -5,8 +5,11 @@ import java.util.List;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import commons.BasePage;
+import commons.GlobalConstants;
 import pageUI.HomePageUI;
 
 public class HomePageObject extends BasePage {
@@ -121,7 +124,7 @@ public class HomePageObject extends BasePage {
 	}
 
 	public List<String> getListProduct() {
-		waitForElementVisible(driver, HomePageUI.LIST_PRODUCT_SORT);
+		waitForListElementVisiable(driver, HomePageUI.LIST_PRODUCT_SORT);
 		List<WebElement> elements = getListWebElement(driver, HomePageUI.LIST_PRODUCT_SORT);
 		List<String> listProduct = new ArrayList<String>();
 		for (WebElement webElement : elements) {
@@ -132,14 +135,15 @@ public class HomePageObject extends BasePage {
 	}
 
 	public List<String> getListPrice() {
-		waitForElementVisible(driver, HomePageUI.LIST_OF_PRICET_SORT);
+		waitForListElementVisiable(driver, HomePageUI.LIST_OF_PRICET_SORT);
 		List<WebElement> elements = getListWebElement(driver, HomePageUI.LIST_OF_PRICET_SORT);
 		List<String> listPrice = new ArrayList<String>();
 		for (WebElement webElement : elements) {
 			String a = getElementText(driver, webElement);
-			a = a.substring(0);
+			System.out.println(a);
 			listPrice.add(a);
 		}
+
 		return listPrice;
 	}
 
@@ -149,15 +153,24 @@ public class HomePageObject extends BasePage {
 	}
 
 	public int numberProductPerPage() {
-		waitForElementVisible(driver, HomePageUI.NUMBER_OF_PRODUCT_PER_PAGE);
+		waitForListElementVisiable(driver, HomePageUI.NUMBER_OF_PRODUCT_PER_PAGE);
 		return getListWebElement(driver, HomePageUI.NUMBER_OF_PRODUCT_PER_PAGE).size();
 
 	}
 
-	public int getPageCurrent() {
+	public int getCurrentPage() {
 		waitForElementVisible(driver, HomePageUI.PAGE_CURRENT);
 		String str = getElementText(driver, HomePageUI.PAGE_CURRENT);
 		return Integer.valueOf(str);
 	}
 
+	public boolean isDisplayNextPage() {
+		waitForElementVisible(driver, HomePageUI.NEXT_PAGE_BUTTON);
+		return isElementDisplayed(driver, HomePageUI.NEXT_PAGE_BUTTON);
+	}
+
+	public boolean isDisplayPreviousPage() {
+		waitForElementVisible(driver, HomePageUI.PREV_PAGE_BUTTON);
+		return isElementDisplayed(driver, HomePageUI.PREV_PAGE_BUTTON);
+	}
 }

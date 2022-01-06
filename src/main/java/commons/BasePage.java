@@ -90,7 +90,7 @@ public class BasePage {
 //	}
 
 	// locatoType: id=/ css=/ xpath=/ name=/ class=
-	private By getByLocator(String locatorType) {
+	protected By getByLocator(String locatorType) {
 		By by = null;
 		if (locatorType.startsWith("id=")) {
 			by = By.id(locatorType.substring(3));

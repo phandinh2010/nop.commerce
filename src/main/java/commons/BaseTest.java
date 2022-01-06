@@ -266,7 +266,22 @@ public class BaseTest {
 			return true;
 		return false;
 	}
+	
+	public boolean SortDoubleASC(Double a, Double b) {
+		if (a > b)
+			return true;
+		return false;
+	}
 
+	
+	public boolean isListDoubleSortASC(List<Double> list) {
+		boolean result = false;
+		for (int i = 0; i < list.size() - 1; i++) {
+			return result = SortDoubleASC(list.get(i), list.get(i + 1));
+			
+		}
+		return result;
+	}
 	public boolean isListSortAToZ(List<String> list) {
 		boolean result = false;
 		for (int i = 0; i < list.size() - 1; i++) {
