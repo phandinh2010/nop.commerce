@@ -291,18 +291,6 @@ public class BaseTest {
 		return result;
 	}
 	
-	public HomePageObject registerAccount(HomePageObject homePage, WebDriver driver, String emailRegister) {
-		registerPage = homePage.clickToRegisterLink();
-		registerPage.enterToFirstNameTextbox("test");
-		registerPage.enterToLastNameTextbox("auto");
-		registerPage.enterToEmailTextbox(emailRegister);
-		registerPage.enterToPasswordTextbox("123456");
-		registerPage.enterToConfirmPasswordTextbox("123456");
-		registerPage.clickToRegisterBtn();
-		registerPage.clickToContinueBtn();
-		return PageGeneratorManager.getHomePage(driver);
-
-	}
 
 	public void sleepInSecond(long time) {
 		try {

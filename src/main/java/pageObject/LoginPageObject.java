@@ -22,11 +22,12 @@ public class LoginPageObject extends BasePage {
 		sendkeyToElement(driver, LoginPageUI.PASSWORD_TEXTBOX, value);
 	}
 
-	public void clickToLoginBtn() {
+	public HomePageObject clickToLoginBtn() {
 		waitForElementVisible(driver, LoginPageUI.LOGIN_BUTTON);
 		clickToElement(driver, LoginPageUI.LOGIN_BUTTON);
+		return PageGeneratorManager.getHomePage(driver);
 
-	}
+	}	
 
 	public String getEmailEmptyMsg() {
 		waitForElementVisible(driver, LoginPageUI.EMAIL_EMPTY_MSG);

@@ -38,9 +38,9 @@ public class ProductPageObject extends BasePage {
 		
 	}
 
-	public String isMsgAddToWishlistSuccess() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getMsgAddToWishlistSuccess() {
+		waitForElementVisible(driver, ProductPageUI.MSG_ADD_TO_WISHLIST_SUCCESS);
+		return getElementText(driver, ProductPageUI.MSG_ADD_TO_WISHLIST_SUCCESS);
 	}
 
 	public WishlistPageObject clickToWishlist() {

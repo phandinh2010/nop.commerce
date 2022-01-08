@@ -177,4 +177,9 @@ public class HomePageObject extends BasePage {
 	public boolean isUndisplayPaging() {
 	return  isElementUndisplayed(driver, HomePageUI.PAGING_FUNCTION);
 	}
+
+	public boolean isDisplayMyAccountLink() {
+		waitForElementVisible(driver, GlobalConstants.MY_ACCOUNT_LINK);
+		return isElementDisplayed(driver, GlobalConstants.MY_ACCOUNT_LINK);
+	}
 }

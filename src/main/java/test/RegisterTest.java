@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 
 import commons.BaseTest;
 import pageObject.HomePageObject;
+import pageObject.PageGeneratorManager;
 import pageObject.RegisterPageObject;
 
 public class RegisterTest extends BaseTest {
@@ -72,7 +73,7 @@ public class RegisterTest extends BaseTest {
 
 		Assert.assertTrue(registerPage.isSuccessMsgDisplay());
 		registerPage.clickToLogoutLink();
-		homePage = new HomePageObject(driver);
+		homePage = PageGeneratorManager.getHomePage(driver);
 	}
 
 	@Test

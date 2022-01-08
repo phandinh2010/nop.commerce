@@ -257,10 +257,6 @@ public class MyAccountPageObject extends BasePage {
 		clickToElement(driver, MyAccountPageUI.SUCCESS_CHANGE_PASSWORD_MSG);
 		
 	}
-public boolean isLoginSuccess() {
-	waitForElementVisible(driver, HomePageUI.MY_ACCOUNT_LINK);
-	return isElementDisplayed(driver, HomePageUI.MY_ACCOUNT_LINK);
-}
 
 public void clickToMyProductReviews() {
 	waitForElementVisible(driver, MyAccountPageUI.MY_PRODUCT_REVIEW_LINK);

@@ -6,11 +6,13 @@
 
 	<test name="Run on CHROME">
 		<parameter name="browser" value="chrome" />
-		<classes>
-			<!-- 
+		<classes>			
+			<class name="commons.Register" />
+			<class name="test.MyAccountTest" />
 			<class name="test.RegisterTest" />
-			<class name="test.LoginTest" />-->
+			<class name="test.SearchTest" />
 			<class name="test.SortPagingProductTest" />
+			<class name="test.LoginTest" />
 		</classes>
 	</test>
 </suite>

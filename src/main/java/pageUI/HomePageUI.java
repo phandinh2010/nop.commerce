@@ -4,7 +4,7 @@ public class HomePageUI {
 
 	public static final String REGISTER_LINK = "xpath=//a[@class='ico-register']";
 	public static final String LOGIN_LINK = "xpath=//a[text()='Log in']";
-	public static final String MY_ACCOUNT_LINK = "xpath=//a[@class='ico-account']";
+
 	public static final String SELECT_A_PRODUCT = "xpath=//a[text()='%s']";
 	public static final String SEARCH_TEXTBOX_AT_HOME_PAGE= "id=small-searchterms";
 	public static final String SEARCH_TEXTBOX_AT_SEARCH_PAGE= "id=q";

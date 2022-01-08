@@ -542,9 +542,8 @@ public class BasePage {
 	}
 
 	public MyAccountPageObject clickToMyAccountLink(WebDriver driver) {
-
-		waitForElementVisible(driver, HomePageUI.MY_ACCOUNT_LINK);
-		clickToElement(driver, HomePageUI.MY_ACCOUNT_LINK);
+		waitForElementVisible(driver, GlobalConstants.MY_ACCOUNT_LINK);
+		clickToElement(driver, GlobalConstants.MY_ACCOUNT_LINK);
 		return PageGeneratorManager.getMyAccountPage(driver);
 	}
 

@@ -39,7 +39,7 @@ public class WishlistTest extends BaseTest {
 	@Test
 	public void Search_TC_01_Search_With_Empty_Data() {
 		productPage.clickToAddToWishlist();
-		Assert.assertEquals(productPage.isMsgAddToWishlistSuccess(), "");
+		Assert.assertEquals(productPage.getMsgAddToWishlistSuccess(), "");
 		wishlistPage= productPage.clickToWishlist();
 		wishlistPage.clickToLinkWishlistSharing();
 		Assert.assertTrue(wishlistPage.isDisplayProductSharing());	

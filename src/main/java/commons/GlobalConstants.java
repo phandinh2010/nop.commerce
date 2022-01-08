@@ -14,6 +14,7 @@ public class GlobalConstants {
 	public static final String DB_PASS = "admin";
 	public static final long SHORT_TIMEOUT = 10;
 	public static final long LONG_TIMEOUT = 30;
-	public static final String LOG_OUT_LINK = "xpath=//a[text()='Log out']";
+	public static final String LOG_OUT_LINK = "xpath=//a[text()='Log out']";	
+	public static final String MY_ACCOUNT_LINK = "xpath=//a[@class='ico-account']";
 
 }

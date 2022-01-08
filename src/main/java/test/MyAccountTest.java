@@ -8,6 +8,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import commons.BaseTest;
+import commons.Register;
 import pageObject.HomePageObject;
 import pageObject.LoginPageObject;
 import pageObject.MyAccountPageObject;
@@ -24,18 +25,18 @@ public class MyAccountTest extends BaseTest {
 	RegisterPageObject registerPage;
 	MyAccountPageObject myAccountPage;
 	ProductPageObject productPage;
-	String emailRegister;
+	String newPassowrd = "123457";
 
 	@Parameters({ "browser", "url" })
 	@BeforeClass
 	public void beforeClass(String browserName, String urlValue) {
-		driver = getBrowserDriver(browserName, urlValue);
-		// driver.get("https://demo.nopcommerce.com");
-		homePage = new HomePageObject(driver);
-		emailRegister = generalEmail();	
-		registerAccount(homePage, driver, emailRegister);
-		myAccountPage = homePage.clickToMyAccountLink(driver);
-		System.out.println(emailRegister);		
+		driver = getBrowserDriver(browserName, urlValue);		
+		homePage = PageGeneratorManager.getHomePage(driver);
+		loginPage = homePage.clickToLoginLink();
+		loginPage.enterToEmailTextbox(Register.email);
+		loginPage.enterToPasswordTextbox(Register.password);
+		homePage = loginPage.clickToLoginBtn();
+		myAccountPage = homePage.clickToMyAccountLink(driver);				
 	}
 
 	@Test
@@ -91,25 +92,25 @@ public class MyAccountTest extends BaseTest {
 	@Test
 	public void Login_TC_03_My_Account_Change_Password(){
 		myAccountPage.clickChangePasswordLink();
-		myAccountPage.enterOldPassword("123456");
-		myAccountPage.enterNewPassword("1234567");
-		myAccountPage.enterConfirmPassword("1234567");
+		myAccountPage.enterOldPassword(Register.password);
+		myAccountPage.enterNewPassword(newPassowrd);
+		myAccountPage.enterConfirmPassword(newPassowrd);
 		myAccountPage.clickChangePasswordButton();
 		myAccountPage.clickToCloseMsgChangePasswordSuccess();
 		homePage = myAccountPage.clickLogoutLink();
 		loginPage = homePage.clickToLoginLink();
 		
-		loginPage.enterToEmailTextbox(emailRegister);
-		loginPage.enterToPasswordTextbox("123456");
+		loginPage.enterToEmailTextbox(Register.email);
+		loginPage.enterToPasswordTextbox(Register.password);
 		loginPage.clickToLoginBtn();
 		System.out.println(loginPage.getLoginFailMsg());
 		Assert.assertTrue(loginPage.getLoginFailMsg().contains("Login was unsuccessful. Please correct the errors and try again."));
 		Assert.assertTrue(loginPage.getLoginFailMsg().contains("The credentials provided are incorrect"));
 		
-		loginPage.enterToPasswordTextbox("1234567");
+		loginPage.enterToPasswordTextbox(newPassowrd);
 		loginPage.clickToLoginBtn();
 		homePage = PageGeneratorManager.getHomePage(driver);
-		Assert.assertTrue(myAccountPage.isLoginSuccess());		
+		Assert.assertTrue(homePage.isDisplayMyAccountLink());		
 		
 	}
 

@@ -10,6 +10,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import commons.BaseTest;
+import commons.Register;
 import pageObject.HomePageObject;
 import pageObject.LoginPageObject;
 import pageObject.RegisterPageObject;
@@ -20,7 +21,6 @@ public class LoginTest extends BaseTest {
 	HomePageObject homePage;
 	LoginPageObject loginPage;
 	RegisterPageObject registerPage;
-	String emailRegister;
 
 	@Parameters({ "browser", "url" })
 	@BeforeClass
@@ -53,24 +53,29 @@ public class LoginTest extends BaseTest {
 		loginPage.enterToPasswordTextbox("123456");
 		loginPage.clickToLoginBtn();
 		System.out.println(loginPage.getLoginFailMsg());
-		Assert.assertEquals(loginPage.getLoginFailMsg(), "Login was unsuccessful. Please correct the errors and try again.\r\n"
-				+ "No customer account found");
-		//Assert.assertEquals(loginPage.getCustomerNotFoundMsg(), "No customer account found");
+		Assert.assertTrue(loginPage.getLoginFailMsg()
+				.contains("Login was unsuccessful. Please correct the errors and try again."));
+		Assert.assertTrue(loginPage.getLoginFailMsg()
+				.contains("Login was unsuccessful. Please correct the errors and try again."));
+		// Assert.assertEquals(loginPage.getCustomerNotFoundMsg(), "No customer account
+		// found");
 	}
 
 	@Test
 	public void Login_TC_04_Email_Valid_Pass_Empty() {
-		loginPage.enterToEmailTextbox(RegisterTest.emailRegister);
-		loginPage.enterToPasswordTextbox("");
+		loginPage.enterToEmailTextbox(Register.email);
+		loginPage.enterToPasswordTextbox("");//
 		loginPage.clickToLoginBtn();
-		Assert.assertEquals(loginPage.getPasswordEmptyLoginFailMsg(), "Login was unsuccessful. Please correct the errors and try again.\r\n"
-				+ "The credentials provided are incorrect");
-		//Assert.assertEquals(loginPage.getPasswordEmptyMsg(), "The credentials provided are incorrect");
+		Assert.assertTrue(loginPage.getPasswordEmptyLoginFailMsg()
+				.contains("Login was unsuccessful. Please correct the errors and try again."));
+
+		Assert.assertTrue(loginPage.getPasswordEmptyLoginFailMsg().contains("The credentials provided are incorrect"));
+
 	}
 
 	@Test
 	public void Login_TC_05_Email_Valid_Pass_Wrong() {
-		loginPage.enterToEmailTextbox(RegisterTest.emailRegister);
+		loginPage.enterToEmailTextbox(Register.email);
 		loginPage.enterToPasswordTextbox("123457");
 		loginPage.clickToLoginBtn();
 		Assert.assertEquals(loginPage.getPasswordwrongMsg(), "The credentials provided are incorrect");
@@ -78,10 +83,10 @@ public class LoginTest extends BaseTest {
 
 	@Test
 	public void Login_TC_06_Email_Valid_Pass_Valid() {
-		loginPage.enterToEmailTextbox(RegisterTest.emailRegister);
-		loginPage.enterToPasswordTextbox("123456");
-		loginPage.clickToLoginBtn();
-		Assert.assertTrue(registerPage.isSuccessMsgDisplay());
+		loginPage.enterToEmailTextbox(Register.email);
+		loginPage.enterToPasswordTextbox(Register.password);
+		homePage = loginPage.clickToLoginBtn();
+		Assert.assertTrue(homePage.isDisplayMyAccountLink());
 	}
 
 	@AfterClass(alwaysRun = true) // Khi testcase fail vẫn run để close browser
@@ -89,12 +94,4 @@ public class LoginTest extends BaseTest {
 		removeDriver();
 	}
 
-	public String generalEmail() {
-		String email = "test" + random(1, 1000) + "@gmail.com";
-		return email;
-	}
-
-	private static int random(int min, int max) {
-		return (int) Math.floor(Math.random() * (max - min) + min);
-	}
 }
