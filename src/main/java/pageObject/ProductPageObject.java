@@ -32,4 +32,20 @@ public class ProductPageObject extends BasePage {
 		clickToElement(driver, ProductPageUI.SUBMIT_REVIEW_BUTTON);
 	}
 
+	public void clickToAddToWishlist() {
+		waitForElementVisible(driver, ProductPageUI.ADD_TO_WISHLIST_BUTTON);
+		clickToElement(driver, ProductPageUI.ADD_TO_WISHLIST_BUTTON);
+		
+	}
+
+	public String isMsgAddToWishlistSuccess() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public WishlistPageObject clickToWishlist() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
