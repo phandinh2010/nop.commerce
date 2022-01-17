@@ -13,12 +13,10 @@ public class TestNGAppender extends AppenderSkeleton {
 		Reporter.log(getLayout().format(event) + "<br>");
 	}
 
-	@Override
 	public void close() {
 		Reporter.log("Logging appender is closed");
 	}
 
-	@Override
 	public boolean requiresLayout() {
 		return true;
 	}
