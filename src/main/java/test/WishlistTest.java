@@ -11,6 +11,7 @@ import commons.BaseTest;
 import pageObject.HomePageObject;
 import pageObject.LoginPageObject;
 import pageObject.MyAccountPageObject;
+import pageObject.PageGeneratorManager;
 import pageObject.ProductPageObject;
 import pageObject.RegisterPageObject;
 import pageObject.ShoppingCartPageObject;
@@ -30,8 +31,8 @@ public class WishlistTest extends BaseTest {
 	@Parameters({ "browser", "url" })
 	@BeforeClass
 	public void beforeClass(String browserName, String urlValue) {
-		driver = getBrowserDriver(browserName, urlValue);		
-		homePage = new HomePageObject(driver);
+		driver = getBrowserDriver(browserName, urlValue);
+		homePage = PageGeneratorManager.getHomePage(driver);
 		productPage = homePage.clickToAProduct("Apple MacBook Pro 13-inch");
 	}
 
@@ -40,36 +41,38 @@ public class WishlistTest extends BaseTest {
 		productPage.clickToAddToWishlist();
 		Assert.assertEquals(productPage.getMsgAddToWishlistSuccess(), "The product has been added to your wishlist");
 		productPage.closeMsgAddToWishlistSuccess();
-		wishlistPage= productPage.clickToWishlistLink(driver);
+		wishlistPage = productPage.clickToWishlistLink(driver);
 		Assert.assertTrue(wishlistPage.isDisplayProduct("Apple MacBook Pro 13-inch"));
-		
+
 		wishlistPage.clickToLinkWishlistSharing();
-		Assert.assertTrue(wishlistPage.isDisplayProduct("Apple MacBook Pro 13-inch"));	
-		
-	}	
-	
+		Assert.assertTrue(wishlistPage.isDisplayProduct("Apple MacBook Pro 13-inch"));
+
+	}
+
 	@Test
-	public void Wishlist_TC_02_Add_To_Cart() {
+	public void Wishlist_TC_02_Add_To_Cart() throws InterruptedException {
+		Thread.sleep(2000);
+		wishlistPage.clickToWishlistLink(driver);
 		wishlistPage.checkToCheckboxAddToCart();
 		shoppingCartPage = wishlistPage.clickToButtonAddToCart();
-		Assert.assertTrue(shoppingCartPage.isDisplayProduct(""));
-		
-		wishlistPage= shoppingCartPage.clickToWishlistLink(driver);
-		Assert.assertTrue(wishlistPage.isNotDisplayProduct(""));
-	}	
+		Assert.assertTrue(shoppingCartPage.isDisplayProduct("Apple MacBook Pro 13-inch"));
+		wishlistPage = shoppingCartPage.clickToWishlistLink(driver);
+		Assert.assertTrue(wishlistPage.isNotDisplayProduct("Apple MacBook Pro 13-inch"));
+	}
+
 	@Test
-	public void Wishlist_TC_03_Remove_Product_From_Wishlist() {
+	public void Wishlist_TC_03_Remove_Product_From_Wishlist() throws InterruptedException {
 		homePage = wishlistPage.clickToLogoWeb(driver);
 		productPage = homePage.clickToAProduct("Apple MacBook Pro 13-inch");
 		productPage.clickToAddToWishlist();
+		Thread.sleep(2000);
 		productPage.closeMsgAddToWishlistSuccess();
-		wishlistPage= productPage.clickToWishlistLink(driver);
+		wishlistPage = productPage.clickToWishlistLink(driver);
 		wishlistPage.clickToRemoveProductCheckbox();
-		wishlistPage.clickToUpdateWishlist();
-		Assert.assertEquals(wishlistPage.getMsgWhenWishlistEmpty(), "");
-		Assert.assertTrue(wishlistPage.isNotDisplayProduct(""));
-	}	
-		
+		Assert.assertEquals(wishlistPage.getMsgWhenWishlistEmpty(), "The wishlist is empty!");
+		Assert.assertTrue(wishlistPage.isNotDisplayProduct("Apple MacBook Pro 13-inch"));
+	}
+
 	@AfterClass(alwaysRun = true) // Khi testcase fail vẫn run để close browser
 	public void afterClass() {
 		removeDriver();

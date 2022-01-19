@@ -27,7 +27,7 @@ public class LoginPageObject extends BasePage {
 		clickToElement(driver, LoginPageUI.LOGIN_BUTTON);
 		return PageGeneratorManager.getHomePage(driver);
 
-	}	
+	}
 
 	public String getEmailEmptyMsg() {
 		waitForElementVisible(driver, LoginPageUI.EMAIL_EMPTY_MSG);

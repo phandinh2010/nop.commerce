@@ -103,7 +103,6 @@ public class MyAccountTest extends BaseTest {
 		loginPage.enterToEmailTextbox(Register.email);
 		loginPage.enterToPasswordTextbox(Register.password);
 		loginPage.clickToLoginBtn();
-		System.out.println(loginPage.getLoginFailMsg());
 		Assert.assertTrue(loginPage.getLoginFailMsg().contains("Login was unsuccessful. Please correct the errors and try again."));
 		Assert.assertTrue(loginPage.getLoginFailMsg().contains("The credentials provided are incorrect"));
 		
@@ -117,8 +116,7 @@ public class MyAccountTest extends BaseTest {
 	@Test
 	public void Login_TC_04_My_Account_Add_Review_Product() {
 		productPage = homePage.clickToAProduct("Apple MacBook Pro 13-inch");		
-		productPage.clickToAddYourReviewLink();
-		
+		productPage.clickToAddYourReviewLink();		
 		productPage.enterReviewTitleTextbox("Test title");
 		productPage.enterContentReivewTextarea("Test content");
 		productPage.clickToSubmitReviewButton();	

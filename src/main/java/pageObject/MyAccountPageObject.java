@@ -247,19 +247,19 @@ public class MyAccountPageObject extends BasePage {
 	}
 
 	public HomePageObject clickLogoutLink() {
-		waitForElementVisible(driver, GlobalConstants.LOG_OUT_LINK);
+		waitForElementClickable(driver, GlobalConstants.LOG_OUT_LINK);
 		clickToElement(driver, GlobalConstants.LOG_OUT_LINK);
 		return PageGeneratorManager.getHomePage(driver);
 	}
 	
 	public void clickToCloseMsgChangePasswordSuccess() {
-		waitForElementVisible(driver, MyAccountPageUI.SUCCESS_CHANGE_PASSWORD_MSG);
+		waitForElementClickable(driver, MyAccountPageUI.SUCCESS_CHANGE_PASSWORD_MSG);
 		clickToElement(driver, MyAccountPageUI.SUCCESS_CHANGE_PASSWORD_MSG);
 		
 	}
 
 public void clickToMyProductReviews() {
-	waitForElementVisible(driver, MyAccountPageUI.MY_PRODUCT_REVIEW_LINK);
+	waitForElementClickable(driver, MyAccountPageUI.MY_PRODUCT_REVIEW_LINK);
 	clickToElement(driver, MyAccountPageUI.MY_PRODUCT_REVIEW_LINK);	
 }
 

@@ -1,7 +1,6 @@
 package commons;
 
-import java.util.ArrayList;
-import java.util.Iterator;
+
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -19,10 +18,9 @@ import pageObject.HomePageObject;
 import pageObject.MyAccountPageObject;
 import pageObject.PageGeneratorManager;
 import pageObject.WishlistPageObject;
-import pageUI.HomePageUI;
 
 public class BasePage {
-//	protected final Log log;
+//	protected final Log log;F
 //	// Constructor
 //	public BasePage() {
 //		log = LogFactory.getLog(getClass());
@@ -62,7 +60,7 @@ public class BasePage {
 
 	public void waitForAlertPresence(WebDriver driver) {
 		try {
-			WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
+			WebDriverWait explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
 			explicitWait.until(ExpectedConditions.alertIsPresent());
 		} catch (Exception e) {
 //			log.debug(e.getMessage());
@@ -173,7 +171,7 @@ public class BasePage {
 		clickToElement(driver, parentLocator);
 		sleepInSecond(1);
 
-		WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
+		WebDriverWait explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
 		explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(getByLocator(childItemLocator)));
 
 		List<WebElement> allItems = getListWebElement(driver, childItemLocator);
@@ -272,9 +270,9 @@ public class BasePage {
 	}
 
 	public boolean isElementUndisplayed(WebDriver driver, String locator) {
-		overideImpicitTimeout(driver, shortTimeout);
+		overideImpicitTimeout(driver, GlobalConstants.SHORT_TIMEOUT);
 		List<WebElement> elements = getListWebElement(driver, locator);
-		overideImpicitTimeout(driver, longTimeout);
+		overideImpicitTimeout(driver, GlobalConstants.LONG_TIMEOUT);
 
 		if (elements.size() == 0) {
 			System.out.println("Element not in DOM");
@@ -287,12 +285,12 @@ public class BasePage {
 			System.out.println("Element in DOM and visible");
 			return false;
 		}
-	}
+	}	
 
 	public boolean isElementUndisplayed(WebDriver driver, String locator, String... values) {
-		overideImpicitTimeout(driver, shortTimeout);
+		overideImpicitTimeout(driver, GlobalConstants.SHORT_TIMEOUT);
 		List<WebElement> elements = getListWebElement(driver, getDynamicLocator(locator, values));
-		overideImpicitTimeout(driver, longTimeout);
+		overideImpicitTimeout(driver, GlobalConstants.LONG_TIMEOUT);
 
 		if (elements.size() == 0) {
 			System.out.println("Element not in DOM");
@@ -468,7 +466,7 @@ public class BasePage {
 
 	public void waitForElementVisible(WebDriver driver, String locator) {
 		try {
-			WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
+			WebDriverWait explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
 			explicitWait.until(ExpectedConditions.visibilityOfElementLocated(getByLocator(locator)));
 		} catch (Exception e) {
 //			log.debug("Wait for element visible with error: " + e.getMessage());
@@ -478,27 +476,36 @@ public class BasePage {
 	}
 
 	public void waitForElementVisible(WebDriver driver, String locator, String... values) {
-		WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
+		WebDriverWait explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
 		explicitWait
 				.until(ExpectedConditions.visibilityOfElementLocated(getByLocator(getDynamicLocator(locator, values))));
 
 	}
 
 	public void waitForListElementVisiable(WebDriver driver, String locator) {
-		WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
+		WebDriverWait explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
 		explicitWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(getByLocator(locator)));
 
 	}
 
 	public void waitForElementInvisible(WebDriver driver, String locator) {
-		WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
-		explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(getByLocator(locator)));
+		WebDriverWait explicitWait = new WebDriverWait(driver, GlobalConstants.SHORT_TIMEOUT);
+		explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(getByLocator(locator)));		
+	}
+	
+	
+	
+	public void waitForElementInvisible(WebDriver driver, String locator, String...values) {
+		WebDriverWait explicitWait = new WebDriverWait(driver, GlobalConstants.SHORT_TIMEOUT);		
+		explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(getByLocator(getDynamicLocator(locator, values))));
 
 	}
+	
+	
 
 	public void waitForElementClickable(WebDriver driver, String locator) {
 		try {
-			WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
+			WebDriverWait explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
 			explicitWait.until(ExpectedConditions.elementToBeClickable(getByLocator(locator)));
 		} catch (Exception e) {
 //			log.debug("Wait for element clickable with error: " + e.getMessage());
@@ -507,7 +514,7 @@ public class BasePage {
 	}
 
 	public void waitForElementClickable(WebDriver driver, String locator, String... values) {
-		WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
+		WebDriverWait explicitWait = new WebDriverWait(driver, GlobalConstants.LONG_TIMEOUT);
 		explicitWait.until(ExpectedConditions.elementToBeClickable(getByLocator(getDynamicLocator(locator, values))));
 	}
 
@@ -558,9 +565,6 @@ public class BasePage {
 		waitForElementClickable(driver, GlobalConstants.LOGO_WEB_IMAGE);
 		clickToElement(driver, GlobalConstants.LOGO_WEB_IMAGE);
 		return PageGeneratorManager.getHomePage(driver);
-	}
-
-	private long shortTimeout = 15;
-	private long longTimeout = 30;
+	}	
 
 }

@@ -7,9 +7,14 @@
 	<test name="Run on CHROME">
 		<parameter name="browser" value="chrome" />
 		<classes>			
-			<!--<class name="commons.Register" />-->
-			
 			<class name="test.WishlistTest" />
+			
+			<!--<class name="test.SearchTest" />
+			<class name="commons.Register" />
+			<class name="test.MyAccountTest" />
+			<class name="test.LoginTest" />
+			<class name="test.RegisterTest" /> -->
+			
 		</classes>
 	</test>
 </suite>

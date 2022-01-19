@@ -2,10 +2,7 @@ package pageUI;
 
 public class HomePageUI {
 
-	public static final String REGISTER_LINK = "xpath=//a[@class='ico-register']";
-	public static final String LOGIN_LINK = "xpath=//a[text()='Log in']";
-
-	public static final String DYAMIC_SELECT_A_PRODUCT = "xpath=//a[text()='%s']";
+	
 	public static final String SEARCH_TEXTBOX_AT_HOME_PAGE= "id=small-searchterms";
 	public static final String SEARCH_TEXTBOX_AT_SEARCH_PAGE= "id=q";
 	public static final String SEARCH_BUTTON_AT_HOME_PAGE = "xpath=//button[text()='Search']";
@@ -30,5 +27,6 @@ public class HomePageUI {
 	public static final String PAGE_CURRENT = "xpath=//li[@class='current-page']/span";
 	public static final String NEXT_PAGE_BUTTON = "xpath=//li[@class='next-page']";
 	public static final String PREV_PAGE_BUTTON = "xpath=//li[@class='previous-page']";
-	public static final String PAGING_FUNCTION = "xpath=//div[@class='pager']"; 
+	public static final String PAGING_FUNCTION = "xpath=//div[@class='pager']";
+	public static final String SELECt_A_PRODUCT = "xpath=//h2/a[text()='%s']"; 
 }

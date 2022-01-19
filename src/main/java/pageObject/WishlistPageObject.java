@@ -3,6 +3,7 @@ package pageObject;
 import org.openqa.selenium.WebDriver;
 
 import commons.BasePage;
+import commons.GlobalConstants;
 import pageUI.WishlistPageUI;
 
 public class WishlistPageObject extends BasePage {
@@ -20,8 +21,8 @@ public class WishlistPageObject extends BasePage {
 	}
 
 	public boolean isDisplayProduct(String productName) {
-		waitForElementClickable(driver, WishlistPageUI.DYAMIC_PRODUCT, productName);
-		return isElementDisplayed(driver, WishlistPageUI.DYAMIC_PRODUCT, productName);
+		waitForElementClickable(driver, GlobalConstants.DYNAMIC_A_PRODUCT, productName);
+		return isElementDisplayed(driver, GlobalConstants.DYNAMIC_A_PRODUCT, productName);
 	}
 
 	public void checkToCheckboxAddToCart() {
@@ -35,21 +36,21 @@ public class WishlistPageObject extends BasePage {
 		return PageGeneratorManager.getShoppingCartPage(driver);
 	}
 
-	public boolean isNotDisplayProduct(String string) {
-		waitForElementInvisible(driver, WishlistPageUI.DYAMIC_PRODUCT);
-		return isElementUndisplayed(driver, WishlistPageUI.DYAMIC_PRODUCT);
+	public boolean isNotDisplayProduct(String productName) {
+		waitForElementInvisible(driver, GlobalConstants.DYNAMIC_A_PRODUCT, productName);
+		return isElementUndisplayed(driver, GlobalConstants.DYNAMIC_A_PRODUCT, productName);
 	
 	}
 
 	public void clickToRemoveProductCheckbox() {
-		waitForElementClickable(driver, WishlistPageUI.REMOVE_PRODUCT_CHECKBOX);
-		checkToCheckboxOrRadio(driver, WishlistPageUI.REMOVE_PRODUCT_CHECKBOX);
+		waitForElementClickable(driver, WishlistPageUI.REMOVE_PRODUCT_ICON);
+		clickToElement(driver, WishlistPageUI.REMOVE_PRODUCT_ICON);
 	}
 
-	public void clickToUpdateWishlist() {
-		waitForElementClickable(driver, WishlistPageUI.UPDATE_WISHLIST_BUTTON);
-		clickToElement(driver, WishlistPageUI.UPDATE_WISHLIST_BUTTON);
-	}
+//	public void clickToUpdateWishlist() {
+//		waitForElementClickable(driver, WishlistPageUI.UPDATE_WISHLIST_BUTTON);
+//		clickToElement(driver, WishlistPageUI.UPDATE_WISHLIST_BUTTON);
+//	}
 
 	public String getMsgWhenWishlistEmpty() {
 		waitForElementVisible(driver, WishlistPageUI.MSG_WARNING_WISHLIST_EMPTY);

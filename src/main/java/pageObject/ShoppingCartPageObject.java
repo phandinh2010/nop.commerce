@@ -19,9 +19,9 @@ public class ShoppingCartPageObject extends BasePage {
 		this.driver = driver;
 	}
 
-	public boolean isDisplayProduct(String string) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isDisplayProduct(String productName) {
+		waitForElementVisible(driver, GlobalConstants.DYNAMIC_A_PRODUCT, productName);
+		return isElementDisplayed(driver, GlobalConstants.DYNAMIC_A_PRODUCT, productName);
 	}
 
 	

@@ -20,21 +20,21 @@ public class HomePageObject extends BasePage {
 	}
 
 	public RegisterPageObject clickToRegisterLink() {
-		waitForElementVisible(driver, HomePageUI.REGISTER_LINK);
-		clickToElement(driver, HomePageUI.REGISTER_LINK);
+		waitForElementVisible(driver, GlobalConstants.REGISTER_LINK);
+		clickToElement(driver, GlobalConstants.REGISTER_LINK);
 		return PageGeneratorManager.getRegisterPage(driver);
 	}
 
 	public LoginPageObject clickToLoginLink() {
-		waitForElementVisible(driver, HomePageUI.LOGIN_LINK);
-		clickToElement(driver, HomePageUI.LOGIN_LINK);
+		waitForElementClickable(driver, GlobalConstants.LOGIN_LINK);
+		clickToElement(driver, GlobalConstants.LOGIN_LINK);
 		return PageGeneratorManager.getLoginPage(driver);
 
 	}
 
 	public ProductPageObject clickToAProduct(String nameProduct) {
-		waitForElementVisible(driver, HomePageUI.DYAMIC_SELECT_A_PRODUCT, nameProduct);
-		clickToElement(driver, HomePageUI.DYAMIC_SELECT_A_PRODUCT, nameProduct);
+		waitForElementClickable(driver, HomePageUI.SELECt_A_PRODUCT, nameProduct);
+		clickToElement(driver, HomePageUI.SELECt_A_PRODUCT, nameProduct);
 		return PageGeneratorManager.getProductPage(driver);
 	}
 
@@ -49,12 +49,12 @@ public class HomePageObject extends BasePage {
 	}
 
 	public void clickToSearchButtonAtHomePage() {
-		waitForElementVisible(driver, HomePageUI.SEARCH_BUTTON_AT_HOME_PAGE);
+		waitForElementClickable(driver, HomePageUI.SEARCH_BUTTON_AT_HOME_PAGE);
 		clickToElement(driver, HomePageUI.SEARCH_BUTTON_AT_HOME_PAGE);
 	}
 
 	public void clickToSearchButtonAtSearchPage() {
-		waitForElementVisible(driver, HomePageUI.SEARCH_BUTTON_AT_SEARCH_PAGE);
+		waitForElementClickable(driver, HomePageUI.SEARCH_BUTTON_AT_SEARCH_PAGE);
 		clickToElement(driver, HomePageUI.SEARCH_BUTTON_AT_SEARCH_PAGE);
 	}
 
@@ -113,7 +113,7 @@ public class HomePageObject extends BasePage {
 	public void clickSubMenu(String parentMenu, String subMenu) {
 		waitForElementVisible(driver, HomePageUI.MENU_HEADER, parentMenu);
 		hoverToElement(driver, HomePageUI.MENU_HEADER, parentMenu);
-		waitForElementVisible(driver, HomePageUI.SUBMENU_HEADER, subMenu);
+		waitForElementClickable(driver, HomePageUI.SUBMENU_HEADER, subMenu);
 		clickToElement(driver, HomePageUI.SUBMENU_HEADER, subMenu);
 	}
 
@@ -175,7 +175,7 @@ public class HomePageObject extends BasePage {
 	}
 
 	public boolean isUndisplayPaging() {
-	return  isElementUndisplayed(driver, HomePageUI.PAGING_FUNCTION);
+		return isElementUndisplayed(driver, HomePageUI.PAGING_FUNCTION);
 	}
 
 	public boolean isDisplayMyAccountLink() {
