@@ -33,8 +33,8 @@ public class HomePageObject extends BasePage {
 	}
 
 	public ProductPageObject clickToAProduct(String nameProduct) {
-		waitForElementVisible(driver, HomePageUI.SELECT_A_PRODUCT, nameProduct);
-		clickToElement(driver, HomePageUI.SELECT_A_PRODUCT, nameProduct);
+		waitForElementVisible(driver, HomePageUI.DYAMIC_SELECT_A_PRODUCT, nameProduct);
+		clickToElement(driver, HomePageUI.DYAMIC_SELECT_A_PRODUCT, nameProduct);
 		return PageGeneratorManager.getProductPage(driver);
 	}
 

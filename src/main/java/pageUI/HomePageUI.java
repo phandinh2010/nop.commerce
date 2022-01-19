@@ -5,7 +5,7 @@ public class HomePageUI {
 	public static final String REGISTER_LINK = "xpath=//a[@class='ico-register']";
 	public static final String LOGIN_LINK = "xpath=//a[text()='Log in']";
 
-	public static final String SELECT_A_PRODUCT = "xpath=//a[text()='%s']";
+	public static final String DYAMIC_SELECT_A_PRODUCT = "xpath=//a[text()='%s']";
 	public static final String SEARCH_TEXTBOX_AT_HOME_PAGE= "id=small-searchterms";
 	public static final String SEARCH_TEXTBOX_AT_SEARCH_PAGE= "id=q";
 	public static final String SEARCH_BUTTON_AT_HOME_PAGE = "xpath=//button[text()='Search']";
@@ -24,7 +24,7 @@ public class HomePageUI {
 	public static final String SUBMENU_HEADER = "xpath=//ul[@class='top-menu notmobile']//a[text()='%s']";
 	public static final String SORT_ITEM_DROPDOWN = "id=products-orderby";
 	public static final String LIST_PRODUCT_SORT = "xpath=//h2[@class='product-title']/a";
-	public static final String LIST_OF_PRICET_SORT = "xpath=//span[@class='price actual-price']";
+	public static final String LIST_OF_PRICET_SORT = "xpath=//span[@class='price actual-price']";	
 	public static final String DISPLAY_DROPLIST = "id=products-pagesize";
 	public static final String NUMBER_OF_PRODUCT_PER_PAGE = "xpath=//div[@class='item-box']";
 	public static final String PAGE_CURRENT = "xpath=//li[@class='current-page']/span";

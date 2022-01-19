@@ -18,6 +18,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObject.HomePageObject;
 import pageObject.MyAccountPageObject;
 import pageObject.PageGeneratorManager;
+import pageObject.WishlistPageObject;
 import pageUI.HomePageUI;
 
 public class BasePage {
@@ -542,13 +543,22 @@ public class BasePage {
 	}
 
 	public MyAccountPageObject clickToMyAccountLink(WebDriver driver) {
-		waitForElementVisible(driver, GlobalConstants.MY_ACCOUNT_LINK);
+		waitForElementClickable(driver, GlobalConstants.MY_ACCOUNT_LINK);
 		clickToElement(driver, GlobalConstants.MY_ACCOUNT_LINK);
 		return PageGeneratorManager.getMyAccountPage(driver);
 	}
 
+	public WishlistPageObject clickToWishlistLink(WebDriver driver) {
+		waitForElementClickable(driver, GlobalConstants.MY_WISHLIST_LINK);
+		clickToElement(driver, GlobalConstants.MY_WISHLIST_LINK);
+		return PageGeneratorManager.getWishlistPage(driver);
+	}
 
-	
+	public HomePageObject clickToLogoWeb(WebDriver driver) {
+		waitForElementClickable(driver, GlobalConstants.LOGO_WEB_IMAGE);
+		clickToElement(driver, GlobalConstants.LOGO_WEB_IMAGE);
+		return PageGeneratorManager.getHomePage(driver);
+	}
 
 	private long shortTimeout = 15;
 	private long longTimeout = 30;

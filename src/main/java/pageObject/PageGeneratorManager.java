@@ -23,4 +23,12 @@ public class PageGeneratorManager {
 	public static ProductPageObject getProductPage(WebDriver driver) {		
 		return new ProductPageObject(driver);
 	}
+
+	public static WishlistPageObject getWishlistPage(WebDriver driver) {		
+		return new WishlistPageObject(driver);
+	}
+
+	public static ShoppingCartPageObject getShoppingCartPage(WebDriver driver) {
+		return new ShoppingCartPageObject(driver);
+	}
 }

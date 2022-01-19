@@ -11,11 +11,10 @@ import commons.BaseTest;
 import pageObject.HomePageObject;
 import pageObject.LoginPageObject;
 import pageObject.MyAccountPageObject;
-import pageObject.PageGeneratorManager;
 import pageObject.ProductPageObject;
 import pageObject.RegisterPageObject;
+import pageObject.ShoppingCartPageObject;
 import pageObject.WishlistPageObject;
-import pageUI.MyAccountPageUI;
 
 public class WishlistTest extends BaseTest {
 
@@ -26,27 +25,51 @@ public class WishlistTest extends BaseTest {
 	MyAccountPageObject myAccountPage;
 	ProductPageObject productPage;
 	WishlistPageObject wishlistPage;
-	String emailRegister;
+	ShoppingCartPageObject shoppingCartPage;
 
 	@Parameters({ "browser", "url" })
 	@BeforeClass
 	public void beforeClass(String browserName, String urlValue) {
 		driver = getBrowserDriver(browserName, urlValue);		
 		homePage = new HomePageObject(driver);
-		productPage = homePage.clickToAProduct("");
+		productPage = homePage.clickToAProduct("Apple MacBook Pro 13-inch");
 	}
 
 	@Test
-	public void Search_TC_01_Search_With_Empty_Data() {
+	public void Wishlist_TC_01_Add_To_Wishlist() {
 		productPage.clickToAddToWishlist();
-		Assert.assertEquals(productPage.getMsgAddToWishlistSuccess(), "");
-		wishlistPage= productPage.clickToWishlist();
+		Assert.assertEquals(productPage.getMsgAddToWishlistSuccess(), "The product has been added to your wishlist");
+		productPage.closeMsgAddToWishlistSuccess();
+		wishlistPage= productPage.clickToWishlistLink(driver);
+		Assert.assertTrue(wishlistPage.isDisplayProduct("Apple MacBook Pro 13-inch"));
+		
 		wishlistPage.clickToLinkWishlistSharing();
-		Assert.assertTrue(wishlistPage.isDisplayProductSharing());	
-	
+		Assert.assertTrue(wishlistPage.isDisplayProduct("Apple MacBook Pro 13-inch"));	
+		
 	}	
 	
-
+	@Test
+	public void Wishlist_TC_02_Add_To_Cart() {
+		wishlistPage.checkToCheckboxAddToCart();
+		shoppingCartPage = wishlistPage.clickToButtonAddToCart();
+		Assert.assertTrue(shoppingCartPage.isDisplayProduct(""));
+		
+		wishlistPage= shoppingCartPage.clickToWishlistLink(driver);
+		Assert.assertTrue(wishlistPage.isNotDisplayProduct(""));
+	}	
+	@Test
+	public void Wishlist_TC_03_Remove_Product_From_Wishlist() {
+		homePage = wishlistPage.clickToLogoWeb(driver);
+		productPage = homePage.clickToAProduct("Apple MacBook Pro 13-inch");
+		productPage.clickToAddToWishlist();
+		productPage.closeMsgAddToWishlistSuccess();
+		wishlistPage= productPage.clickToWishlistLink(driver);
+		wishlistPage.clickToRemoveProductCheckbox();
+		wishlistPage.clickToUpdateWishlist();
+		Assert.assertEquals(wishlistPage.getMsgWhenWishlistEmpty(), "");
+		Assert.assertTrue(wishlistPage.isNotDisplayProduct(""));
+	}	
+		
 	@AfterClass(alwaysRun = true) // Khi testcase fail vẫn run để close browser
 	public void afterClass() {
 		removeDriver();

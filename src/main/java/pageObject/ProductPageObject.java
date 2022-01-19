@@ -43,9 +43,12 @@ public class ProductPageObject extends BasePage {
 		return getElementText(driver, ProductPageUI.MSG_ADD_TO_WISHLIST_SUCCESS);
 	}
 
-	public WishlistPageObject clickToWishlist() {
-		// TODO Auto-generated method stub
-		return null;
+	public void closeMsgAddToWishlistSuccess() {
+		waitForElementClickable(driver, ProductPageUI.CLOSE_MSG_ADD_TO_WISHLIST_SUCCESS);
+		clickToElement(driver, ProductPageUI.CLOSE_MSG_ADD_TO_WISHLIST_SUCCESS);
+		
 	}
+
+	
 
 }

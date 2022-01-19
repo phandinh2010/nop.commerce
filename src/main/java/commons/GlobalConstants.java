@@ -16,5 +16,7 @@ public class GlobalConstants {
 	public static final long LONG_TIMEOUT = 30;
 	public static final String LOG_OUT_LINK = "xpath=//a[text()='Log out']";	
 	public static final String MY_ACCOUNT_LINK = "xpath=//a[@class='ico-account']";
+	public static final String MY_WISHLIST_LINK = "xpath=//a[@class='ico-wishlist']";
+	public static final String LOGO_WEB_IMAGE = null;
 
 }

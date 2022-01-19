@@ -34,11 +34,5 @@
 	<classpathentry kind="lib" path="libraries/testng-7.4.0.jar"/>
 	<classpathentry kind="lib" path="libraries/velocity-1.4.jar"/>
 	<classpathentry kind="con" path="org.testng.TESTNG_CONTAINER"/>
-	<classpathentry excluding="**" kind="src" output="target/test-classes" path="src/test/resources">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="test" value="true"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
