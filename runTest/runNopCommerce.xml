@@ -9,11 +9,11 @@
 		<classes>			
 			<class name="test.WishlistTest" />
 			
-			<!--<class name="test.SearchTest" />
+			<class name="test.SearchTest" />
 			<class name="commons.Register" />
 			<class name="test.MyAccountTest" />
 			<class name="test.LoginTest" />
-			<class name="test.RegisterTest" /> -->
+			<class name="test.RegisterTest" />
 			
 		</classes>
 	</test>

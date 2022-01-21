@@ -24,5 +24,8 @@ public class ShoppingCartPageObject extends BasePage {
 		return isElementDisplayed(driver, GlobalConstants.DYNAMIC_A_PRODUCT, productName);
 	}
 
+	public void waitForWishlistReturnToZero() {
+		waitForElementVisible(driver, GlobalConstants.WISHLIST_EQUAL_TO_ZERO);		
+	}
 	
 }

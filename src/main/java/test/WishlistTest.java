@@ -37,7 +37,7 @@ public class WishlistTest extends BaseTest {
 	}
 
 	@Test
-	public void Wishlist_TC_01_Add_To_Wishlist() {
+	public void Wishlist_TC_01_Add_To_Wishlist() throws InterruptedException {
 		productPage.clickToAddToWishlist();
 		Assert.assertEquals(productPage.getMsgAddToWishlistSuccess(), "The product has been added to your wishlist");
 		productPage.closeMsgAddToWishlistSuccess();
@@ -51,13 +51,15 @@ public class WishlistTest extends BaseTest {
 
 	@Test
 	public void Wishlist_TC_02_Add_To_Cart() throws InterruptedException {
-		Thread.sleep(2000);
 		wishlistPage.clickToWishlistLink(driver);
 		wishlistPage.checkToCheckboxAddToCart();
 		shoppingCartPage = wishlistPage.clickToButtonAddToCart();
 		Assert.assertTrue(shoppingCartPage.isDisplayProduct("Apple MacBook Pro 13-inch"));
+		Thread.sleep(3000);
+		//shoppingCartPage.waitForWishlistReturnToZero();
 		wishlistPage = shoppingCartPage.clickToWishlistLink(driver);
 		Assert.assertTrue(wishlistPage.isNotDisplayProduct("Apple MacBook Pro 13-inch"));
+		
 	}
 
 	@Test
@@ -65,7 +67,6 @@ public class WishlistTest extends BaseTest {
 		homePage = wishlistPage.clickToLogoWeb(driver);
 		productPage = homePage.clickToAProduct("Apple MacBook Pro 13-inch");
 		productPage.clickToAddToWishlist();
-		Thread.sleep(2000);
 		productPage.closeMsgAddToWishlistSuccess();
 		wishlistPage = productPage.clickToWishlistLink(driver);
 		wishlistPage.clickToRemoveProductCheckbox();
